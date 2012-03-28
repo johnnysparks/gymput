@@ -38,6 +38,7 @@
 		099482AD152298E100D69B32 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 099482AC152298E100D69B32 /* MainViewController.m */; };
 		099482AF152298E100D69B32 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 099482AE152298E100D69B32 /* MainViewController.xib */; };
 		099482B3152298E100D69B32 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = 099482B2152298E100D69B32 /* verify.sh */; };
+		099482BC15229FC900D69B32 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 099482BB15229FC900D69B32 /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		099482AE152298E100D69B32 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
 		099482B1152298E100D69B32 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		099482B2152298E100D69B32 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
+		099482BB15229FC900D69B32 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		0994824F152298E000D69B32 = {
 			isa = PBXGroup;
 			children = (
+				099482BB15229FC900D69B32 /* www */,
 				0994827B152298E000D69B32 /* gymput */,
 				09948260152298E000D69B32 /* Frameworks */,
 				0994825E152298E000D69B32 /* Products */,
@@ -329,6 +332,7 @@
 				099482A6152298E100D69B32 /* Cordova.plist in Resources */,
 				099482AF152298E100D69B32 /* MainViewController.xib in Resources */,
 				099482B3152298E100D69B32 /* verify.sh in Resources */,
+				099482BC15229FC900D69B32 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
