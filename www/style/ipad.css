@@ -1,0 +1,60 @@
+body {
+  background: white url(../img/clip.jpg) no-repeat;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2.2em;
+  text-align: justify;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  display: block;
+  position: absolute;
+  overflow: hidden;
+  top: 220px;
+  left: 100px;
+  width: 590px;
+  height: 650px;
+  background: #E4E4E4;
+}
+
+form p {
+  margin: 20px 0;
+  padding: 0 1em;
+}
+
+fieldset {
+  display: none;
+}
+
+fieldset.active {
+  display: block;
+}
+
+fieldset.welcome img.logo {
+  margin: 20px auto;
+  display: block;
+  width: 500px;
+  height: 115px;
+}
+
+fieldset.welcome h2 {
+  font-size: 200%;
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+ul.social {
+  text-align: center;
+}
+
+ul.social li {
+  display: inline;
+}
+ul.social img {
+  margin: 10px;
+  width: 70px;
+  height: 70px;
+}
