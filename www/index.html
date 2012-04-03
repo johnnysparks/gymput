@@ -17,6 +17,9 @@
       $(document).bind('deviceready', function(e) {
          $('.clipboard').turn();
          $('.clipboard').turn('display', 'single');
+         $('img.next').click(function() {
+           $('.clipboard').turn('next');
+         });
       });
       $(document).ready(function(e) {
          $('.clipboard').turn();
@@ -194,5 +197,6 @@
             <p><input type="checkbox" name="media" value="videos" />I like to follow exercise videos</p>
         </div>
     </form>
+    <img class="next" src="img/next_arrow.png" />
   </div></body>
 </html>

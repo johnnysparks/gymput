@@ -40,16 +40,6 @@ form p {
   padding: 0 1em;
 }
 
-/*
-fieldset {
-  display: none;
-}
-
-fieldset.active {
-  display: block;
-}
-*/
-
 fieldset.welcome img.logo {
   margin: 20px auto;
   display: block;
@@ -61,6 +51,14 @@ fieldset.welcome h2 {
   font-size: 200%;
   text-align: center;
   margin: 0.5em 0;
+}
+
+img.next {
+  width: 50px;
+  height: 90px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 ul.social {
