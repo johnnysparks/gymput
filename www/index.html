@@ -36,140 +36,126 @@
   <body><div class="wrapper">
     <form>
       <div class="clipboard">
-        <div class="page">
-          <fieldset class="welcome active">
-            <img class="logo" src="img/gyms/anytime.png" alt="Anytime Fitness" />
-            <h2>Welcome!</h2>
-            <p>We'd like to know a little about you and your fitness goals.</p>
-            <ul class="social" >
-              <li><a href="http://facebook.com"><img src="img/facebook.png" alt="Facebook" /></a></li>
-              <li><a href="http://twitter.com"><img src="img/twitter.png" alt="Twitter" /></a></li>
-              <li><a href="http://plus.google.com"><img src="img/google.png" alt="Google Plus" /></a></li>
-            </ul>
-            <p>For a 14-day free pass, log in with your favorite social network.</p>
-            <p></p>
-            <p></p>
-          </fieldset>
-        </div>
+        <fieldset class="welcome page">
+          <img class="logo" src="img/gyms/anytime.png" alt="Anytime Fitness" />
+          <h2>Welcome!</h2>
+          <p>We'd like to know a little about you and your fitness goals.</p>
+          <ul class="social" >
+            <li><a href="http://facebook.com"><img src="img/facebook.png" alt="Facebook" /></a></li>
+            <li><a href="http://twitter.com"><img src="img/twitter.png" alt="Twitter" /></a></li>
+            <li><a href="http://plus.google.com"><img src="img/google.png" alt="Google Plus" /></a></li>
+          </ul>
+          <p>For a 14-day free pass, log in with your favorite social network.</p>
+          <p></p>
+          <p></p>
+        </fieldset>
 
-        <div class="page">
-          <fieldset class="contact">
-            <label for="contact-name">Name</label>
-            <input type="text" name="name" id="contact-name" maxlength="100" />
-    
-            <label for="contact-email">Email</label>
-            <input type="email" name="email" id="contact-email" maxlength="100" />
-    
-            <label for="contact-phone">Phone</label>
-            <input type="text" name="phone" id="contact-phone" maxlength="12" />
-    
-            <label for="contact-address">Address</label>
-            <input type="text" name="address" id="contact-address" maxlength="100" />
-            <label for="contact-zip">Zip</label>
-            <input type="number" name="zip" id="contact-zip" />
-          </fieldset>
-        </div>
+        <fieldset class="contact page">
+          <label for="contact-name">Name</label>
+          <input type="text" name="name" id="contact-name" maxlength="100" />
 
-        <div class="page">
-          <fieldset class="personal">
-            <label for="personal-age">Age</label>
-            <input type="number" name="age" id="personal-age" />
-    
-            <label for="personal-gender">Gender</label>
-            <p><input type="radio" name="gender" id="personal-gender" value="male" /> Male</p>
-            <p><input type="radio" name="gender" value="female" /> Female</p>
-    
-            <label for="personal-married">Marital Status</label>
-            <p><input type="radio" name="married" id="personal-married" value="married" /> Married</p>
-            <p><input type="radio" name="married" value="single" /> Single</p>
-    
-            <label for="personal-spouse">Spouse Name</label>
-            <input type="text" name="spouse" id="personal-spouse" maxlength="100" />
-    
-            <label for="personal-numchildren">Number of Children</label>
-            <input type="number" name="numchildren" id="personal-numchildren" />
-          </fieldset>
-        </div>
+          <label for="contact-email">Email</label>
+          <input type="email" name="email" id="contact-email" maxlength="100" />
 
-        <div class="page">
-          <fieldset class="referral">
-            <label for="referral-source">How did you hear about us?</label>
-            <p><input type="radio" name="source" id="referral-source" value="friend" /> Friend</p>
-    
-            <label for="referral-source-friend">Friend's Name</label>
-            <input type="text" name="source-friend" id="referral-source-friend" maxlength="100" />
-    
-            <p><input type="radio" name="source" value="online" /> Online</p>
-            <label for="referral-source-online">Online Source</label>
-            <input type="text" name="source-online" id="referral-source-online" maxlength="100" />
-    
-            <p><input type="radio" name="source" value="ad" /> Ad</p>
-            <label for="referral-source-ad">Which</label>
-            <input type="text" name="source-ad" id="referral-source-ad" maxlength="100" />
-          </fieldset>
-        </div>
+          <label for="contact-phone">Phone</label>
+          <input type="text" name="phone" id="contact-phone" maxlength="12" />
 
-        <div class="page">
-          <fieldset class="fitness">
-            <h3>How important is excercize to you?</h3>
-            <p><input type="radio" name="importance" value="very" /> Very Important</p>
-            <p><input type="radio" name="importance" value="important" /> Important</p>
-            <p><input type="radio" name="importance" value="somewhat" /> Somewhat Important</p>
-            <p><input type="radio" name="importance" value="slightly" /> Not Very Important</p>
-    
-            <h3>How often do you exercise?</h3>
-            <p><input type="radio" name="frequency" value="most" /> Most days</p>
-            <p><input type="radio" name="frequency" value="couple" /> A couple times a week</p>
-            <p><input type="radio" name="frequency" value="weekly" /> Weekly</p>
-            <p><input type="radio" name="frequency" value="monthly" /> Monthly</p>
-            <p><input type="radio" name="frequency" value="never" /> Never</p>
-    
-            <h3>When do you prefer to work out?</h3>
-            <p><input type="radio" name="schedule" value="morning" /> Morning</p>
-            <p><input type="radio" name="schedule" value="day" /> Day</p>
-            <p><input type="radio" name="schedule" value="evening" /> Evening</p>
-    
-            <h3>For how long do you normally excercise?</h3>
-            <p><input type="radio" name="duration" value="lt-30" /> Less than 30 minutes</p>
-            <p><input type="radio" name="duration" value="30-60" /> 30 to 60 minutes</p>
-            <p><input type="radio" name="duration" value="gt-60" /> 60 minutes or more</p>
-          </fieldset>
-        </div>
+          <label for="contact-address">Address</label>
+          <input type="text" name="address" id="contact-address" maxlength="100" />
+          <label for="contact-zip">Zip</label>
+          <input type="number" name="zip" id="contact-zip" />
+        </fieldset>
 
-        <div class="page">
-          <fieldset class="goals">
-            <h3>What do you want to accomplish at the gym?</h3>
-            <p><input type="checkbox" name="objective" value="weight" />Losing Weight</p>
-            <p><input type="checkbox" name="objective" value="muscle" />Building Muscle</p>
-            <p><input type="checkbox" name="objective" value="health" />Improving Health</p>
-            <p><input type="checkbox" name="objective" value="sports" />Sports Conditioning</p>
-          </fieldset>
-        </div>
+        <fieldset class="personal page">
+          <label for="personal-age">Age</label>
+          <input type="number" name="age" id="personal-age" />
 
-        <div class="page">
-          <fieldset class="gym">
-            <h3>Rank what you look for in a gym</h3>
-            <ol>
-              <li>Location</li>
-              <li>Price</li>
-              <li>Equipment Variety</li>
-              <li>Group Exercise</li>
-              <li>Trainer Availability</li>
-              <li>Contract Flexibility</li>
-              <li>Access to Equipment</li>
-              <li>Modern Equipment</li>
-              <li>Education</li>
-              <li>Childcare</li>
-              <li>Message</li>
-              <li>Tanning</li>
-              <li>Healthy Food</li>
-              <li>Atmosphere</li>
-              <li>Flexible Hours</li>
-            </ol>
-          </fieldset>
-        </div>
+          <label for="personal-gender">Gender</label>
+          <p><input type="radio" name="gender" id="personal-gender" value="male" /> Male</p>
+          <p><input type="radio" name="gender" value="female" /> Female</p>
 
-        <div class="page">
+          <label for="personal-married">Marital Status</label>
+          <p><input type="radio" name="married" id="personal-married" value="married" /> Married</p>
+          <p><input type="radio" name="married" value="single" /> Single</p>
+
+          <label for="personal-spouse">Spouse Name</label>
+          <input type="text" name="spouse" id="personal-spouse" maxlength="100" />
+
+          <label for="personal-numchildren">Number of Children</label>
+          <input type="number" name="numchildren" id="personal-numchildren" />
+        </fieldset>
+
+        <fieldset class="referral page">
+          <label for="referral-source">How did you hear about us?</label>
+          <p><input type="radio" name="source" id="referral-source" value="friend" /> Friend</p>
+
+          <label for="referral-source-friend">Friend's Name</label>
+          <input type="text" name="source-friend" id="referral-source-friend" maxlength="100" />
+
+          <p><input type="radio" name="source" value="online" /> Online</p>
+          <label for="referral-source-online">Online Source</label>
+          <input type="text" name="source-online" id="referral-source-online" maxlength="100" />
+
+          <p><input type="radio" name="source" value="ad" /> Ad</p>
+          <label for="referral-source-ad">Which</label>
+          <input type="text" name="source-ad" id="referral-source-ad" maxlength="100" />
+        </fieldset>
+
+        <fieldset class="fitness page">
+          <h3>How important is excercize to you?</h3>
+          <p><input type="radio" name="importance" value="very" /> Very Important</p>
+          <p><input type="radio" name="importance" value="important" /> Important</p>
+          <p><input type="radio" name="importance" value="somewhat" /> Somewhat Important</p>
+          <p><input type="radio" name="importance" value="slightly" /> Not Very Important</p>
+
+          <h3>How often do you exercise?</h3>
+          <p><input type="radio" name="frequency" value="most" /> Most days</p>
+          <p><input type="radio" name="frequency" value="couple" /> A couple times a week</p>
+          <p><input type="radio" name="frequency" value="weekly" /> Weekly</p>
+          <p><input type="radio" name="frequency" value="monthly" /> Monthly</p>
+          <p><input type="radio" name="frequency" value="never" /> Never</p>
+
+          <h3>When do you prefer to work out?</h3>
+          <p><input type="radio" name="schedule" value="morning" /> Morning</p>
+          <p><input type="radio" name="schedule" value="day" /> Day</p>
+          <p><input type="radio" name="schedule" value="evening" /> Evening</p>
+
+          <h3>For how long do you normally excercise?</h3>
+          <p><input type="radio" name="duration" value="lt-30" /> Less than 30 minutes</p>
+          <p><input type="radio" name="duration" value="30-60" /> 30 to 60 minutes</p>
+          <p><input type="radio" name="duration" value="gt-60" /> 60 minutes or more</p>
+        </fieldset>
+
+        <fieldset class="goals page">
+          <h3>What do you want to accomplish at the gym?</h3>
+          <p><input type="checkbox" name="objective" value="weight" />Losing Weight</p>
+          <p><input type="checkbox" name="objective" value="muscle" />Building Muscle</p>
+          <p><input type="checkbox" name="objective" value="health" />Improving Health</p>
+          <p><input type="checkbox" name="objective" value="sports" />Sports Conditioning</p>
+        </fieldset>
+
+        <fieldset class="gym page">
+          <h3>Rank what you look for in a gym</h3>
+          <ol>
+            <li>Location</li>
+            <li>Price</li>
+            <li>Equipment Variety</li>
+            <li>Group Exercise</li>
+            <li>Trainer Availability</li>
+            <li>Contract Flexibility</li>
+            <li>Access to Equipment</li>
+            <li>Modern Equipment</li>
+            <li>Education</li>
+            <li>Childcare</li>
+            <li>Message</li>
+            <li>Tanning</li>
+            <li>Healthy Food</li>
+            <li>Atmosphere</li>
+            <li>Flexible Hours</li>
+          </ol>
+        </fieldset>
+
+        <fieldset class="page">
             <h3>What equipment do you plan to use?</h3>
             <p><input type="checkbox" name="equipment" value="free_weights" />Free weights</p>
             <p><input type="checkbox" name="equipment" value="weight_machines" />Weight Machines</p>
@@ -181,9 +167,9 @@
             <p><input type="checkbox" name="equipment" value="basketball_courts" />Basketball Courts</p>
             <p><input type="checkbox" name="equipment" value="tennis_courts" />Tennis Courts</p>
             <p><input type="checkbox" name="equipment" value="volleyball_courts" />Volleyball Courts</p>
-        </div>
+        </fieldset>
 
-        <div class="page">
+        <fieldset class="page">
             <h3>Interested in classes?</h3>
             <p><input type="checkbox" name="classes" value="aerobic" />Aerobic and Step</p>
             <p><input type="checkbox" name="classes" value="eastern" />Yoga / T'ai Chi</p>
@@ -192,15 +178,15 @@
             <p><input type="checkbox" name="classes" value="bootcamp" />Bootcamp</p>
             <p><input type="checkbox" name="classes" value="senior" />Senior</p>
             <p><input type="checkbox" name="classes" value="martial_arts" />Martial Arts</p>
-        </div>
+        </fieldset>
 
-        <div class="page">
+        <fieldset class="page">
             <h3>Gym media preferences</h3>
             <p><input type="checkbox" name="media" value="ipod" />I like to listen to my own music</p>
             <p><input type="checkbox" name="media" value="radio" />I like to listen to the ambient music</p>
             <p><input type="checkbox" name="media" value="tv" />I like to watch TV</p>
             <p><input type="checkbox" name="media" value="videos" />I like to follow exercise videos</p>
-        </div>
+        </fieldset>
       </div>
     </form>
   </div>
