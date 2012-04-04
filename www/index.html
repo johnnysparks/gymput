@@ -13,14 +13,22 @@
     <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="turn.js"></script>
     <script type="text/javascript">
+      function init() {
+        $('.clipboard').turn();
+        $('.clipboard').turn('display', 'single');
+        $('img.nav.next').click(function() {
+          $('.clipboard').turn('next');
+        });
+        $('img.nav.prev').click(function() {
+          $('.clipboard').turn('previous');
+        });
+      }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
       $(document).bind('deviceready', function(e) {
-         $('.clipboard').turn();
-         $('.clipboard').turn('display', 'single');
+        init();
       });
       $(document).ready(function(e) {
-         $('.clipboard').turn();
-         $('.clipboard').turn('display', 'single');
+        init();
       });
     </script>
   </head>
@@ -193,6 +201,10 @@
             <p><input type="checkbox" name="media" value="tv" />I like to watch TV</p>
             <p><input type="checkbox" name="media" value="videos" />I like to follow exercise videos</p>
         </div>
+      </div>
     </form>
-  </div></body>
+  </div>
+  <img class="nav prev" src="img/prev_arrow.png" />
+  <img class="nav next" src="img/next_arrow.png" />
+</body>
 </html>
