@@ -77,12 +77,17 @@
         </fieldset>
 
         <fieldset class="personal page">
-          <label for="personal-age">Age</label>
-          <input type="number" name="age" id="personal-age" />
+          <div>
+            <label for="personal-gender">Gender</label>
+            <p><input type="radio" name="gender" id="personal-gender" value="male" /> Male</p>
+            <p><input type="radio" name="gender" value="female" /> Female</p>
+          </div>
 
-          <label for="personal-gender">Gender</label>
-          <p><input type="radio" name="gender" id="personal-gender" value="male" /> Male</p>
-          <p><input type="radio" name="gender" value="female" /> Female</p>
+          <div>
+            <label for="personal-age">Age</label>
+            <input type="number" name="age" id="personal-age" />
+          </div>
+
 
           <label for="personal-married">Marital Status</label>
           <p><input type="radio" name="married" id="personal-married" value="married" /> Married</p>
