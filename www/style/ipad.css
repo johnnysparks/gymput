@@ -3,6 +3,15 @@ body {
   font-size: 2.2em;
   text-align: justify;
 }
+div.inputs {
+  display: inline-block;
+  width: 380px;
+  padding-top: 20px;
+}
+
+fieldset.contact img {
+  display: inline-block;
+}
 
 .wrapper {
   background: white url(../img/clip.jpg) no-repeat;
@@ -98,11 +107,7 @@ input[type="text"], input[type="email"], input[type="number"] {
   width: 390px;
   height: 40px;
   font-size: 50%;
-}
-
-label {
   display: block;
-  padding-top: 35px;
 }
 
 ul.social {
