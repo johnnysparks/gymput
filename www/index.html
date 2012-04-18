@@ -55,15 +55,15 @@
             <img src="img/home/nametag.png" />
             <div class="inputs">
               <label for="contact-name">Name</label>
-              <input type="text" name="name" id="contact-name" maxlength="100" />
+              <input type="text" name="contact-name" id="contact-name" maxlength="100" />
             </div>
           </div>
 
           <div>
-            <img src="img/home/phone.png" />
+            <img src="img/home/email.png" />
             <div class="inputs">
               <label for="contact-email">Email</label>
-              <input type="email" name="email" id="contact-email" maxlength="100" />
+              <input type="email" name="contact-email" id="contact-email" maxlength="100" />
             </div>
           </div>
 
@@ -86,20 +86,25 @@
 
         <fieldset class="personal page">
           <div>
-            <label for="personal-gender">Gender</label>
-            <p><input type="radio" name="gender" id="personal-gender" value="male" /> Male</p>
-            <p><input type="radio" name="gender" value="female" /> Female</p>
+            <input type="radio" name="personal-gender" id="personal-gender-male" value="male" />
+            <label for="personal-gender-male">
+              <img src="img/personal/blueman.png" />
+            </label>
+            <input type="radio" name="personal-gender" id="personal-gender-female" value="male" />
+            <label for="personal-gender-female">
+              <img src="img/personal/femalepink.png" />
+            </label>
           </div>
 
           <div>
             <label for="personal-age">Age</label>
-            <input type="number" name="age" id="personal-age" />
+            <input type="range" name="age" id="personal-age" min="1" max="122" />
           </div>
 
-
-          <label for="personal-married">Marital Status</label>
-          <p><input type="radio" name="married" id="personal-married" value="married" /> Married</p>
-          <p><input type="radio" name="married" value="single" /> Single</p>
+          <input type="radio" name="married" id="personal-married-married" value="married" />
+          <label for="personal-married-married"><img src="" /></label>
+          <input type="radio" name="married" id="personal-married-single"  value="single" />
+          <label for="personal-married-single"><img src="" /></label>
 
           <label for="personal-spouse">Spouse Name</label>
           <input type="text" name="spouse" id="personal-spouse" maxlength="100" />
@@ -110,51 +115,51 @@
 
         <fieldset class="referral page">
           <label for="referral-source">How did you hear about us?</label>
-          <p><input type="radio" name="source" id="referral-source" value="friend" /> Friend</p>
+          <input type="radio" name="source" id="referral-source" value="friend" /> Friend
 
           <label for="referral-source-friend">Friend's Name</label>
           <input type="text" name="source-friend" id="referral-source-friend" maxlength="100" />
 
-          <p><input type="radio" name="source" value="online" /> Online</p>
+          <input type="radio" name="source" value="online" /> Online
           <label for="referral-source-online">Online Source</label>
           <input type="text" name="source-online" id="referral-source-online" maxlength="100" />
 
-          <p><input type="radio" name="source" value="ad" /> Ad</p>
+          <input type="radio" name="source" value="ad" /> Ad
           <label for="referral-source-ad">Which</label>
           <input type="text" name="source-ad" id="referral-source-ad" maxlength="100" />
         </fieldset>
 
         <fieldset class="fitness page">
           <h3>How important is excercize to you?</h3>
-          <p><input type="radio" name="importance" value="very" /> Very Important</p>
-          <p><input type="radio" name="importance" value="important" /> Important</p>
-          <p><input type="radio" name="importance" value="somewhat" /> Somewhat Important</p>
-          <p><input type="radio" name="importance" value="slightly" /> Not Very Important</p>
+          <input type="radio" name="importance" value="very" /> Very Important
+          <input type="radio" name="importance" value="important" /> Important
+          <input type="radio" name="importance" value="somewhat" /> Somewhat Important
+          <input type="radio" name="importance" value="slightly" /> Not Very Important
 
           <h3>How often do you exercise?</h3>
-          <p><input type="radio" name="frequency" value="most" /> Most days</p>
-          <p><input type="radio" name="frequency" value="couple" /> A couple times a week</p>
-          <p><input type="radio" name="frequency" value="weekly" /> Weekly</p>
-          <p><input type="radio" name="frequency" value="monthly" /> Monthly</p>
-          <p><input type="radio" name="frequency" value="never" /> Never</p>
+          <input type="radio" name="frequency" value="most" /> Most days
+          <input type="radio" name="frequency" value="couple" /> A couple times a week
+          <input type="radio" name="frequency" value="weekly" /> Weekly
+          <input type="radio" name="frequency" value="monthly" /> Monthly
+          <input type="radio" name="frequency" value="never" /> Never
 
           <h3>When do you prefer to work out?</h3>
-          <p><input type="radio" name="schedule" value="morning" /> Morning</p>
-          <p><input type="radio" name="schedule" value="day" /> Day</p>
-          <p><input type="radio" name="schedule" value="evening" /> Evening</p>
+          <input type="radio" name="schedule" value="morning" /> Morning
+          <input type="radio" name="schedule" value="day" /> Day
+          <input type="radio" name="schedule" value="evening" /> Evening
 
           <h3>For how long do you normally excercise?</h3>
-          <p><input type="radio" name="duration" value="lt-30" /> Less than 30 minutes</p>
-          <p><input type="radio" name="duration" value="30-60" /> 30 to 60 minutes</p>
-          <p><input type="radio" name="duration" value="gt-60" /> 60 minutes or more</p>
+          <input type="radio" name="duration" value="lt-30" /> Less than 30 minutes
+          <input type="radio" name="duration" value="30-60" /> 30 to 60 minutes
+          <input type="radio" name="duration" value="gt-60" /> 60 minutes or more
         </fieldset>
 
         <fieldset class="goals page">
           <h3>What do you want to accomplish at the gym?</h3>
-          <p><input type="checkbox" name="objective" value="weight" />Losing Weight</p>
-          <p><input type="checkbox" name="objective" value="muscle" />Building Muscle</p>
-          <p><input type="checkbox" name="objective" value="health" />Improving Health</p>
-          <p><input type="checkbox" name="objective" value="sports" />Sports Conditioning</p>
+          <input type="checkbox" name="objective" value="weight" />Losing Weight
+          <input type="checkbox" name="objective" value="muscle" />Building Muscle
+          <input type="checkbox" name="objective" value="health" />Improving Health
+          <input type="checkbox" name="objective" value="sports" />Sports Conditioning
         </fieldset>
 
         <fieldset class="gym page">
@@ -180,35 +185,35 @@
 
         <fieldset class="page">
             <h3>What equipment do you plan to use?</h3>
-            <p><input type="checkbox" name="equipment" value="free_weights" />Free weights</p>
-            <p><input type="checkbox" name="equipment" value="weight_machines" />Weight Machines</p>
-            <p><input type="checkbox" name="equipment" value="treadmills" />Treadmills</p>
-            <p><input type="checkbox" name="equipment" value="stationary_bikes" />Stationary Bikes</p>
-            <p><input type="checkbox" name="equipment" value="elliptical" />Elliptical</p>
-            <p><input type="checkbox" name="equipment" value="aquatics" />Aquatics</p>
-            <p><input type="checkbox" name="equipment" value="racquetball_courts" />Racquetball Courts</p>
-            <p><input type="checkbox" name="equipment" value="basketball_courts" />Basketball Courts</p>
-            <p><input type="checkbox" name="equipment" value="tennis_courts" />Tennis Courts</p>
-            <p><input type="checkbox" name="equipment" value="volleyball_courts" />Volleyball Courts</p>
+            <input type="checkbox" name="equipment" value="free_weights" />Free weights
+            <input type="checkbox" name="equipment" value="weight_machines" />Weight Machines
+            <input type="checkbox" name="equipment" value="treadmills" />Treadmills
+            <input type="checkbox" name="equipment" value="stationary_bikes" />Stationary Bikes
+            <input type="checkbox" name="equipment" value="elliptical" />Elliptical
+            <input type="checkbox" name="equipment" value="aquatics" />Aquatics
+            <input type="checkbox" name="equipment" value="racquetball_courts" />Racquetball Courts
+            <input type="checkbox" name="equipment" value="basketball_courts" />Basketball Courts
+            <input type="checkbox" name="equipment" value="tennis_courts" />Tennis Courts
+            <input type="checkbox" name="equipment" value="volleyball_courts" />Volleyball Courts
         </fieldset>
 
         <fieldset class="page">
             <h3>Interested in classes?</h3>
-            <p><input type="checkbox" name="classes" value="aerobic" />Aerobic and Step</p>
-            <p><input type="checkbox" name="classes" value="eastern" />Yoga / T'ai Chi</p>
-            <p><input type="checkbox" name="classes" value="dance" />Dance / Zumba</p>
-            <p><input type="checkbox" name="classes" value="spinning" />Spinning</p>
-            <p><input type="checkbox" name="classes" value="bootcamp" />Bootcamp</p>
-            <p><input type="checkbox" name="classes" value="senior" />Senior</p>
-            <p><input type="checkbox" name="classes" value="martial_arts" />Martial Arts</p>
+            <input type="checkbox" name="classes" value="aerobic" />Aerobic and Step
+            <input type="checkbox" name="classes" value="eastern" />Yoga / T'ai Chi
+            <input type="checkbox" name="classes" value="dance" />Dance / Zumba
+            <input type="checkbox" name="classes" value="spinning" />Spinning
+            <input type="checkbox" name="classes" value="bootcamp" />Bootcamp
+            <input type="checkbox" name="classes" value="senior" />Senior
+            <input type="checkbox" name="classes" value="martial_arts" />Martial Arts
         </fieldset>
 
         <fieldset class="page">
             <h3>Gym media preferences</h3>
-            <p><input type="checkbox" name="media" value="ipod" />I like to listen to my own music</p>
-            <p><input type="checkbox" name="media" value="radio" />I like to listen to the ambient music</p>
-            <p><input type="checkbox" name="media" value="tv" />I like to watch TV</p>
-            <p><input type="checkbox" name="media" value="videos" />I like to follow exercise videos</p>
+            <input type="checkbox" name="media" value="ipod" />I like to listen to my own music
+            <input type="checkbox" name="media" value="radio" />I like to listen to the ambient music
+            <input type="checkbox" name="media" value="tv" />I like to watch TV
+            <input type="checkbox" name="media" value="videos" />I like to follow exercise videos
         </fieldset>
       </div>
     </form>

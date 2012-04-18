@@ -123,3 +123,17 @@ ul.social img {
   width: 70px;
   height: 70px;
 }
+
+input[type="radio"] {
+  display: none;
+}
+
+label,  label.img {
+  display: inline-block;
+  border: 3px solid transparent;
+}
+
+input[type="radio"]:checked + label {
+  border: 3px solid white;
+  border-radius: 20px;
+}
