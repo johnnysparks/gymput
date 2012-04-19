@@ -87,7 +87,7 @@ fieldset.contact div {
   vertical-align: middle;
 }
 
-fieldset div img {
+fieldset div img.icon {
   width: 150px;
   max-height: 150px;
   margin-right: 30px;
@@ -104,10 +104,11 @@ fieldset.personal div img.selected {
 }
 
 input[type="text"], input[type="email"], input[type="number"] {
-  width: 390px;
+  width: 370px;
   height: 40px;
   font-size: 50%;
   display: block;
+  border-radius: 20px;
 }
 
 ul.social {
@@ -136,4 +137,39 @@ label,  label.img {
 input[type="radio"]:checked + label {
   border: 3px solid white;
   border-radius: 20px;
+}
+
+#personal-age {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  font-size: 110%;
+  text-align: center;
+}
+
+#personal-age-slider {
+  width: 300px;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+
+img.age-sequence {
+  margin: 10px 20px;
+}
+
+.ui-slider .ui-slider-handle {
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  position: absolute;
+  border-style: none;
+  top: -10px;
+}
+
+.center {
+  width: 100%;
+  text-align: center;
+}
+.center > div {
+  display: inline-block;
 }

@@ -9,9 +9,11 @@
     <link rel="stylesheet" media="all" href="style/reset.css" type="text/css" />
     <link rel="stylesheet" media="all" href="style/oxygen.css" type="text/css" />
     <link rel="stylesheet" media="all" href="style/ipad.css" type="text/css" />
-    <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="turn.js"></script>
+    <link rel="stylesheet" media="all" href="style/ui-lightness/jquery-ui-1.8.19.css" type="text/css" />
+    <script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/turn.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.19.min.js"></script>
     <script type="text/javascript">
       function init() {
         $('.clipboard').turn();
@@ -21,6 +23,13 @@
         });
         $('img.nav.prev').click(function() {
           $('.clipboard').turn('previous');
+        });
+        $( "#personal-age-slider" ).slider({
+          min: 1,
+          max: 122,
+          slide: function( event, ui ) {
+            $( "#personal-age" ).val( ui.value );
+          }
         });
       }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
@@ -47,7 +56,7 @@
 
         <fieldset class="contact page">
           <div>
-            <img src="img/home/nametag.png" />
+            <img class="icon" src="img/home/nametag.png" />
             <div class="inputs">
               <label for="contact-name">Name</label>
               <input type="text" name="contact-name" id="contact-name" maxlength="100" />
@@ -55,7 +64,7 @@
           </div>
 
           <div>
-            <img src="img/home/email.png" />
+            <img class="icon" src="img/home/email.png" />
             <div class="inputs">
               <label for="contact-email">Email</label>
               <input type="email" name="contact-email" id="contact-email" maxlength="100" />
@@ -63,7 +72,7 @@
           </div>
 
           <div>
-            <img src="img/home/phone.png" />
+            <img class="icon" src="img/home/phone.png" />
             <div class="inputs">
               <label for="contact-phone">Phone</label>
               <input type="text" name="phone" id="contact-phone" maxlength="12" />
@@ -71,7 +80,7 @@
           </div>
 
           <div>
-            <img src="img/home/home.png" />
+            <img class="icon" src="img/home/home.png" />
             <div class="inputs">
               <label for="contact-address">Address</label>
               <input type="text" name="address" id="contact-address" maxlength="100" />
@@ -80,7 +89,7 @@
         </fieldset>
 
         <fieldset class="personal page">
-          <div>
+          <div class="center">
             <input type="radio" name="personal-gender" id="personal-gender-male" value="male" />
             <label for="personal-gender-male">
               <img src="img/personal/blueman.png" />
@@ -91,11 +100,18 @@
             </label>
           </div>
 
-          <div>
-            <label for="personal-age">Age</label>
-            <input type="range" name="age" id="personal-age" min="1" max="122" />
-          </div>
+          <div class="center"><div>
+            <img class="age-sequence" src="img/personal/boy.png" />
+            <img class="age-sequence" src="img/personal/man.png" />
+            <img class="age-sequence" src="img/personal/oldman.png" />
+          </div></div>
+          <div class="center"><div>
+            <div id="personal-age-slider"></div>
+            <input type="text" name="personal-age" id="personal-age" size="4" value="1" />
+          </div></div>
+        </fieldset>
 
+        <fieldset class="family page">
           <input type="radio" name="married" id="personal-married-married" value="married" />
           <label for="personal-married-married"><img src="" /></label>
           <input type="radio" name="married" id="personal-married-single"  value="single" />
