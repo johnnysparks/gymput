@@ -141,11 +141,35 @@
         </fieldset>
 
         <fieldset class="fitness page">
-          <h3>How important is excercize to you?</h3>
-          <input type="radio" name="importance" value="very" /> Very Important
-          <input type="radio" name="importance" value="important" /> Important
-          <input type="radio" name="importance" value="somewhat" /> Somewhat Important
-          <input type="radio" name="importance" value="slightly" /> Not Very Important
+          <div class="center"><div class="duration">
+            <h3>How long do you like to work out?</h3>
+            <input type="radio" name="duration" id="duration-lt-30" value="lt-30" />
+            <label for="duration-lt-30"><img src="img/timing/20min.png" /><br />&lt;30 min</label>
+            <input type="radio" name="duration" id="duration-30-60" value="30-60" />
+            <label for="duration-30-60"><img src="img/timing/40min.png" /><br />30-60 min</label>
+            <input type="radio" name="duration" id="duration-gt-60" value="gt-60" />
+            <label for="duration-gt-60"><img src="img/timing/120min.png" /><br />&gt;60 min</label>
+          </div></div>
+
+          <div class="center"><div class="accomplish">
+            <h3>What do you want to accomplish?</h3>
+            <input type="checkbox" name="objective" id="objective-weight" value="weight" />
+            <label for="objective-weight"><img src="img/timing/loseweight.png" />Lose Weight</label>
+            <input type="checkbox" name="objective" id="objective-muscle" value="muscle" />
+            <label for="objective-muscle"><img src="img/timing/buildmuscle.png" />Build Muscle</label>
+            <input type="checkbox" name="objective" id="objective-health" value="health" />
+            <label for="objective-health"><img src="img/timing/health.png" />Improve Health</label>
+            <input type="checkbox" name="objective" id="objective-sports" value="sports" />
+            <label for="objective-sports"><img src="img/timing/sport.png" />Sports</label>
+          </div></div>
+        </fieldset>
+
+        <fieldset class="goals page">
+          <h3>How important is excercise to you?</h3>
+          <input type="radio" name="importance" id="importance-very"      value="very" /> Very Important
+          <input type="radio" name="importance" id="importance-important" value="important" /> Important
+          <input type="radio" name="importance" id="importance-somewhat"  value="somewhat" /> Somewhat Important
+          <input type="radio" name="importance" id="importance-slightly"  value="slightly" /> Not Very Important
 
           <h3>How often do you exercise?</h3>
           <input type="radio" name="frequency" value="most" /> Most days
@@ -158,19 +182,6 @@
           <input type="radio" name="schedule" value="morning" /> Morning
           <input type="radio" name="schedule" value="day" /> Day
           <input type="radio" name="schedule" value="evening" /> Evening
-
-          <h3>For how long do you normally excercise?</h3>
-          <input type="radio" name="duration" value="lt-30" /> Less than 30 minutes
-          <input type="radio" name="duration" value="30-60" /> 30 to 60 minutes
-          <input type="radio" name="duration" value="gt-60" /> 60 minutes or more
-        </fieldset>
-
-        <fieldset class="goals page">
-          <h3>What do you want to accomplish at the gym?</h3>
-          <input type="checkbox" name="objective" value="weight" />Losing Weight
-          <input type="checkbox" name="objective" value="muscle" />Building Muscle
-          <input type="checkbox" name="objective" value="health" />Improving Health
-          <input type="checkbox" name="objective" value="sports" />Sports Conditioning
         </fieldset>
 
         <fieldset class="gym page">

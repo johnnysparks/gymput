@@ -1,7 +1,7 @@
 body {
   font-family: 'Oxygen', sans-serif;
   font-size: 2.2em;
-  text-align: justify;
+  text-align: left;
 }
 div.inputs {
   display: inline-block;
@@ -125,17 +125,18 @@ ul.social img {
   height: 70px;
 }
 
-input[type="radio"] {
+input[type="radio"], input[type="checkbox"] {
   display: none;
 }
 
-label,  label.img {
+label, label img {
   display: inline-block;
-  border: 3px solid transparent;
+  border: 6px solid transparent;
 }
 
-input[type="radio"]:checked + label {
-  border: 3px solid white;
+input[type="radio"]:checked + label img,
+input[type="checkbox"]:checked + label img{
+  border: 6px solid white;
   border-radius: 20px;
 }
 
@@ -172,4 +173,32 @@ img.age-sequence {
 }
 .center > div {
   display: inline-block;
+}
+
+div.duration {
+  margin-bottom:35px;
+}
+div.duration label img {
+  width: 160px;
+  height: 160px;
+}
+
+fieldset.fitness label {
+  width: 160px;
+  text-align: center;
+  font-size: 80%;
+  padding-bottom: 10px;
+  vertical-align: top;
+}
+
+fieldset.fitness div.accomplish label img {
+  width: 115px;
+  height: 115px;
+}
+fieldset.fitness div.accomplish label {
+  width: 115px;
+}
+
+fieldset.fitness label h3 {
+  font-size: 90%;
 }
