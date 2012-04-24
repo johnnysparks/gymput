@@ -13,6 +13,7 @@
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.19.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.swipe-events.js"></script>
     <script type="text/javascript">
       function nextPage() {
           curr_page = $('fieldset:visible');
@@ -39,10 +40,9 @@
           }
         });
 
-        $("body").bind('swipeleft', nextPage);
-        $("body").bind('swiperight', prevPage);
-        $('input').bind('swipeleft', function(e) {return false;});
-        $('input').bind('swiperight', function(e) {return false;});
+        $("body").swipeEvents()
+          .bind('swipeLeft', nextPage)
+          .bind('swipeRight', prevPage);
         $(".nav.next").click(nextPage);
         $(".nav.prev").click(prevPage);
       }
