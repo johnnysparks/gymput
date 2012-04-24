@@ -18,7 +18,7 @@
       function nextPage() {
           curr_page = $('fieldset:visible');
           next_page = curr_page.next('fieldset');
-          if(next_page) {
+          if(next_page.length) {
             curr_page.hide();
             next_page.show();
           }
@@ -26,7 +26,7 @@
       function prevPage() {
           curr_page = $('fieldset:visible');
           prev_page = curr_page.prev('fieldset');
-          if(prev_page) {
+          if(prev_page.length) {
             curr_page.hide();
             prev_page.show();
           }
