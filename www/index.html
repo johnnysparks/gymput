@@ -158,44 +158,56 @@
           <div class="center"><div class="duration">
             <h3>How long do you like to work out?</h3>
             <input type="radio" name="duration" id="duration-lt-30" value="lt-30" />
-            <label for="duration-lt-30"><img src="img/timing/20min.png" /><br />&lt;30 min</label>
+            <label for="duration-lt-30"><img src="img/fitness/20min.png" /><br />&lt;30 min</label>
             <input type="radio" name="duration" id="duration-30-60" value="30-60" />
-            <label for="duration-30-60"><img src="img/timing/40min.png" /><br />30-60 min</label>
+            <label for="duration-30-60"><img src="img/fitness/40min.png" /><br />30-60 min</label>
             <input type="radio" name="duration" id="duration-gt-60" value="gt-60" />
-            <label for="duration-gt-60"><img src="img/timing/120min.png" /><br />&gt;60 min</label>
+            <label for="duration-gt-60"><img src="img/fitness/120min.png" /><br />&gt;60 min</label>
           </div></div>
 
           <div class="center"><div class="accomplish">
             <h3>What do you want to accomplish?</h3>
             <input type="checkbox" name="objective" id="objective-weight" value="weight" />
-            <label for="objective-weight"><img src="img/timing/loseweight.png" />Lose Weight</label>
+            <label for="objective-weight"><img src="img/fitness/loseweight.png" />Lose Weight</label>
             <input type="checkbox" name="objective" id="objective-muscle" value="muscle" />
-            <label for="objective-muscle"><img src="img/timing/buildmuscle.png" />Build Muscle</label>
+            <label for="objective-muscle"><img src="img/fitness/buildmuscle.png" />Build Muscle</label>
             <input type="checkbox" name="objective" id="objective-health" value="health" />
-            <label for="objective-health"><img src="img/timing/health.png" />Improve Health</label>
+            <label for="objective-health"><img src="img/fitness/health.png" />Improve Health</label>
             <input type="checkbox" name="objective" id="objective-sports" value="sports" />
-            <label for="objective-sports"><img src="img/timing/sport.png" />Sports</label>
+            <label for="objective-sports"><img src="img/fitness/sport.png" />Sports</label>
           </div></div>
         </fieldset>
 
         <fieldset class="goals page">
+          <div class="center"><div class="importance">
           <h3>How important is excercise to you?</h3>
           <input type="radio" name="importance" id="importance-very"      value="very" /> Very Important
           <input type="radio" name="importance" id="importance-important" value="important" /> Important
           <input type="radio" name="importance" id="importance-somewhat"  value="somewhat" /> Somewhat Important
           <input type="radio" name="importance" id="importance-slightly"  value="slightly" /> Not Very Important
+          </div></div>
 
+          <div class="center"><div class="frequency">
           <h3>How often do you exercise?</h3>
-          <input type="radio" name="frequency" value="most" /> Most days
-          <input type="radio" name="frequency" value="couple" /> A couple times a week
-          <input type="radio" name="frequency" value="weekly" /> Weekly
-          <input type="radio" name="frequency" value="monthly" /> Monthly
-          <input type="radio" name="frequency" value="never" /> Never
+          <input type="radio" name="frequency"  id="frequency-daily"      value="daily" />
+          <label for="frequency-daily"><img src="img/goals/daily.png" />Daily</label>
+          <input type="radio" name="frequency"  id="frequency-often"      value="often" />
+          <label for="frequency-often"><img src="img/goals/often.png" />Often</label>
+          <input type="radio" name="frequency"  id="frequency-seldom"     value="seldom" />
+          <label for="frequency-seldom"><img src="img/goals/rarely.png" />Seldom</label>
+          <input type="radio" name="frequency"  id="frequency-never"      value="never" />
+          <label for="frequency-never"><img src="img/goals/never.png" />Never</label>
+          </div></div>
 
+          <div class="center"><div class="time">
           <h3>When do you prefer to work out?</h3>
-          <input type="radio" name="schedule" value="morning" /> Morning
-          <input type="radio" name="schedule" value="day" /> Day
-          <input type="radio" name="schedule" value="evening" /> Evening
+          <input type="radio" name="schedule"   id="schedule-morning" value="morning" />
+          <label for="schedule-morning"><img src="img/goals/morning.png" />Morning</label>
+          <input type="radio" name="schedule"   id="schedule-day"     value="day" />
+          <label for="schedule-day"><img src="img/goals/day.png" />Day</label>
+          <input type="radio" name="schedule"   id="schedule-evening" value="evening" />
+          <label for="schedule-evening"><img src="img/goals/night.png" />Evening</label>
+          </div></div>
         </fieldset>
 
         <fieldset class="gym page">

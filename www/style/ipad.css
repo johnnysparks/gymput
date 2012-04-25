@@ -183,10 +183,13 @@ div.duration label img {
   height: 160px;
 }
 
-fieldset.fitness label {
-  width: 160px;
+fieldset label {
   text-align: center;
   font-size: 80%;
+}
+
+fieldset.fitness label {
+  width: 160px;
   padding-bottom: 10px;
   vertical-align: top;
 }
@@ -201,4 +204,20 @@ fieldset.fitness div.accomplish label {
 
 fieldset.fitness label h3 {
   font-size: 90%;
+}
+
+fieldset.goals div.frequency label img {
+  width: 120px;
+  height: 120px;
+}
+fieldset.goals div.frequency label {
+  width: 115px;
+}
+
+fieldset.goals div.time label img {
+  width: 160px;
+  height: 160px;
+}
+fieldset.goals div.time label {
+  width: 160px;
 }
