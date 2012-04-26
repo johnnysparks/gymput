@@ -21,20 +21,20 @@
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.ios.js"></script>
     <script type="text/javascript">
       function nextPage() {
-          curr_page = $('fieldset:visible');
-          next_page = curr_page.next('fieldset');
-          if(next_page.length) {
-            curr_page.hide();
-            next_page.show();
-          }
+        curr_page = $('fieldset:visible');
+        next_page = curr_page.next('fieldset');
+        if(next_page.length) {
+          curr_page.hide();
+          next_page.show();
+        }
       }
       function prevPage() {
-          curr_page = $('fieldset:visible');
-          prev_page = curr_page.prev('fieldset');
-          if(prev_page.length) {
-            curr_page.hide();
-            prev_page.show();
-          }
+        curr_page = $('fieldset:visible');
+        prev_page = curr_page.prev('fieldset');
+        if(prev_page.length) {
+          curr_page.hide();
+          prev_page.show();
+        }
       }
 
       function init() {
