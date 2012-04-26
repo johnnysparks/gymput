@@ -15,7 +15,7 @@
     <script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.19.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery.swipe-events.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.touchSwipe-1.2.5.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.core.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.datetime.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.ios.js"></script>
@@ -38,9 +38,13 @@
       }
 
       function init() {
-        $("body").swipeEvents()
-          .bind('swipeLeft', nextPage)
-          .bind('swipeRight', prevPage);
+        $("body").swipe({swipe: function(event, direction) {
+          if(direction === 'left') {
+            nextPage();
+          } else if(direction === 'right') {
+            prevPage();
+          }
+        }});
         $(".nav.next").click(nextPage);
         $(".nav.prev").click(prevPage);
         $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
