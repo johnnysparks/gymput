@@ -199,7 +199,7 @@ fieldset label {
   font-size: 80%;
 }
 
-fieldset.fitness label {
+fieldset.referral label, fieldset.fitness label {
   width: 160px;
   padding-bottom: 10px;
   vertical-align: top;
@@ -231,4 +231,12 @@ fieldset.goals div.time label img {
 }
 fieldset.goals div.time label {
   width: 160px;
+}
+
+#referral-details {
+  display: none;
+  margin-top: 30px;
+}
+#referral-details-text {
+  margin: 0 auto;
 }
