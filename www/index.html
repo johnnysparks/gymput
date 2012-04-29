@@ -49,6 +49,8 @@
         $(".nav.prev").click(prevPage);
         $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
         $("#personal-age").scroller("show");
+
+        $('input[name="referral-source"]').change(function() { $('#referral-details').show() });
       }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
       $(document).ready(function(e) {
@@ -139,19 +141,28 @@
         </fieldset>
 
         <fieldset class="referral page">
-          <label for="referral-source">How did you hear about us?</label>
-          <input type="radio" name="source" id="referral-source" value="friend" /> Friend
+          <div class="center">
+            <h3>How did you hear about us?</h3>
+            <input type="radio" name="referral-source" id="referral-source-friend" value="friend" />
+            <label for="referral-source-friend">
+              <img src="img/referral/friend.png" />Friend
+            </label>
+            <input type="radio" name="referral-source" id="referral-source-online" value="online" />
+            <label for="referral-source-online">
+              <img src="img/referral/online.png" />Online
+            </label>
+            <input type="radio" name="referral-source" id="referral-source-ad" value="ad" />
+            <label for="referral-source-ad">
+              <img src="img/referral/ad.png" />Ad
+            </label>
 
-          <label for="referral-source-friend">Friend's Name</label>
-          <input type="text" name="source-friend" id="referral-source-friend" maxlength="100" />
+            <div class="center" id="referral-details">
+              <h3>Give them some love?</h3>
+              <input type="text" name="referral-details-text" id="referral-details-text" maxlength="100" />
+              <p>Enter your friend's name, website, or ad source.</p>
+            </div>
 
-          <input type="radio" name="source" value="online" /> Online
-          <label for="referral-source-online">Online Source</label>
-          <input type="text" name="source-online" id="referral-source-online" maxlength="100" />
-
-          <input type="radio" name="source" value="ad" /> Ad
-          <label for="referral-source-ad">Which</label>
-          <input type="text" name="source-ad" id="referral-source-ad" maxlength="100" />
+          </div>
         </fieldset>
 
         <fieldset class="fitness page">
