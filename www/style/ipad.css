@@ -95,11 +95,22 @@ fieldset div img.icon {
 }
 
 fieldset.personal div img {
+  width: 200px;
+  height: 200px;
   display: inline;
-  margin: 20px;
+  margin: -3px;
 }
+
+fieldset.personal label {
+  margin: 10px;
+}
+
+fieldset.personal label p {
+  margin-top: 5px;
+}
+
 fieldset.personal div img.selected {
-  border: 5px solid white;
+  border: 10px solid white;
   border-radius: 20px;
 }
 
@@ -131,12 +142,12 @@ input[type="radio"], input[type="checkbox"] {
 
 label, label img {
   display: inline-block;
-  border: 6px solid transparent;
+  border: 10px solid transparent;
 }
 
 input[type="radio"]:checked + label img,
 input[type="checkbox"]:checked + label img{
-  border: 6px solid white;
+  border: 10px solid white;
   border-radius: 20px;
 }
 
