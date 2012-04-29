@@ -1,6 +1,7 @@
 /* iOS Skin */
 .ios .dw {
     padding: 40px 10px 10px 10px;
+ /*
     border: 1px solid #2d3034;
     background: #50515d;
     background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #484a56),color-stop(1, #a2a3ab));
@@ -9,6 +10,8 @@
     background: -o-linear-gradient(#a2a3ab,#484a56);
     color: #fff;
     border-radius: 0;
+  */
+  /* removing background gradients */
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
 }
@@ -33,7 +36,7 @@
 }
 .ios .dww {
     margin: 0 3px;
-    background: #fff;
+  /*background: #fff; */
     background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #333),color-stop(0.10, #999),color-stop(0.30, #fff),color-stop(0.70, #fff),color-stop(0.90, #999),color-stop(1, #333));
     background: -moz-linear-gradient(#333 0%,#999 10%,#fff 30%,#fff 70%,#999 90%,#333 100%);
     background: -ms-linear-gradient(#333 0%,#999 10%,#fff 30%,#fff 70%,#999 90%,#333 100%);
