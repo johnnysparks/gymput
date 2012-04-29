@@ -79,7 +79,7 @@ fieldset.welcome h2 {
 }
 
 fieldset {
-  padding: 20px;
+  padding: 10px;
 }
 
 fieldset.contact div {
@@ -110,7 +110,7 @@ fieldset.personal label p {
 }
 
 fieldset.personal div img.selected {
-  border: 10px solid white;
+  border: 10px solid #5D909E;
   border-radius: 20px;
 }
 
@@ -147,7 +147,7 @@ label, label img {
 
 input[type="radio"]:checked + label img,
 input[type="checkbox"]:checked + label img{
-  border: 10px solid white;
+  border: 10px solid #5D909E;
   border-radius: 20px;
 }
 
