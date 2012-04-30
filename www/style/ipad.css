@@ -3,15 +3,6 @@ body {
   font-size: 2.2em;
   text-align: left;
 }
-div.inputs {
-  display: inline-block;
-  width: 380px;
-  padding-top: 20px;
-}
-
-fieldset.contact img {
-  display: inline-block;
-}
 
 .wrapper {
   background: white url(../img/clip.jpg) no-repeat;
@@ -44,6 +35,10 @@ fieldset.contact img {
   background-color: #E4E4E4;
 }
 
+fieldset.contact div img.icon {
+  float: left;
+}
+
 img.nav {
   position: absolute;
   top: 890px;
@@ -65,6 +60,7 @@ form p {
   padding: 0 1em;
 }
 
+/* WELCOME PAGE STYLES */
 fieldset.welcome img.logo {
   margin: 20px auto;
   display: block;
@@ -78,14 +74,64 @@ fieldset.welcome h2 {
   margin: 0.5em 0;
 }
 
-fieldset.contact div {
-  vertical-align: middle;
+ul.social {
+  text-align: center;
 }
 
-fieldset div img.icon {
+ul.social li {
+  display: inline;
+}
+ul.social img {
+  margin: 10px;
+  width: 70px;
+  height: 70px;
+}
+
+
+/* CONTACT PAGE STYLES */
+fieldset.contact img {
+  display: block;
   float: left;
 }
 
+fieldset.contact div.clearfix {
+  margin: 30px;
+}
+
+fieldset.contact div.name div.inputs {
+  margin-left: 10px;
+}
+
+fieldset.contact div.email div.inputs {
+  margin-left: 22px;
+  margin-top:  10px;
+}
+
+fieldset.contact div.email img {
+  margin-left: 12px;
+}
+
+fieldset.contact div.phone {
+  margin-bottom: 0px;
+}
+
+fieldset.contact div.phone div.inputs {
+  margin-left: 23px;
+  margin-top:  25px;
+}
+
+fieldset.contact div.address {
+  margin-top: 0px;
+}
+
+fieldset.contact div.address div.inputs {
+  margin-left: 15px;
+}
+fieldset.contact div.inputs {
+  float: left;
+}
+
+/* PERSONAL INFO STYLES */
 fieldset.personal div img {
   width: 200px;
   height: 200px;
@@ -106,19 +152,6 @@ input[type="text"], input[type="email"], input[type="number"] {
   border-radius: 20px;
 }
 
-ul.social {
-  text-align: center;
-}
-
-ul.social li {
-  display: inline;
-}
-
-ul.social img {
-  margin: 10px;
-  width: 70px;
-  height: 70px;
-}
 
 input[type="radio"], input[type="checkbox"] {
   display: none;
