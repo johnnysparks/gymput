@@ -179,7 +179,7 @@ fieldset.fitness label p {
   padding: 0;
 }
 
-fieldset.goals div.frequency label img {
+fieldset.equipment label img, fieldset.goals div.frequency label img {
   width: 120px;
   height: 120px;
 }
@@ -196,4 +196,8 @@ fieldset.goals div.time label img {
 }
 #referral-details-text {
   margin: 0 auto;
+}
+
+fieldset.equipment label {
+  vertical-align: top;
 }
