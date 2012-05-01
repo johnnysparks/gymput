@@ -26,6 +26,7 @@
         if(next_page.length) {
           curr_page.hide();
           next_page.show();
+          updateProgress();
         }
       }
       function prevPage() {
@@ -34,7 +35,11 @@
         if(prev_page.length) {
           curr_page.hide();
           prev_page.show();
+          updateProgress();
         }
+      }
+      function updateProgress() {
+        $('#progress').progressbar({value: 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1)});
       }
 
       function init() {
@@ -45,6 +50,7 @@
             prevPage();
           }
         }});
+        $("#progress").progressbar({ value: 0 });
         $(".nav.next").click(nextPage);
         $(".nav.prev").click(prevPage);
         $('label').bind('touchstart', function(e) {
@@ -339,6 +345,7 @@
     </form>
   </div>
   <img class="nav prev" src="img/prev_arrow.png" alt="previous page" />
+  <div id="progress"></div>
   <img class="nav next" src="img/next_arrow.png" alt="next page" />
 </body>
 </html>
