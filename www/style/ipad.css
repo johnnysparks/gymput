@@ -104,7 +104,11 @@ fieldset.contact div.name div.inputs {
 
 fieldset.contact div.email div.inputs {
   margin-left: 22px;
-  margin-top:  10px;
+  margin-top:  20px;
+}
+
+fieldset.contact div.email {
+  margin-bottom: 10px;
 }
 
 fieldset.contact div.email img {
@@ -113,13 +117,17 @@ fieldset.contact div.email img {
 
 fieldset.contact div.phone {
   margin-bottom: 0px;
+  margin-top: 10px;
 }
 
 fieldset.contact div.phone div.inputs {
   margin-left: 23px;
-  margin-top:  25px;
+  margin-top:  30px;
 }
 
+fieldset.contact div.address div.inputs {
+  margin-top: -10px;
+}
 fieldset.contact div.address {
   margin-top: 0px;
 }
