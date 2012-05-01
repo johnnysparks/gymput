@@ -60,10 +60,14 @@
           $(this).trigger('click');
         });
 
-        $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
-        $("#personal-age").scroller("show");
-
         $('input[name="referral-source"]').change(function() { $('#referral-details').show() });
+        $('input[name="married"]').change(function() {
+          if($('input[name="married"]:checked').val() == 'couple') {
+            $('div.partner').show();
+          } else {
+            $('div.partner').hide();
+          }
+        });
       }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
       $(document).ready(function(e) {
@@ -143,16 +147,38 @@
         </fieldset>
 
         <fieldset class="family page">
-          <input type="radio" name="married" id="personal-married-married" value="married" />
-          <label for="personal-married-married"><img src="" /></label>
-          <input type="radio" name="married" id="personal-married-single"  value="single" />
-          <label for="personal-married-single"><img src="" /></label>
+          <div class="center">
+            <h3>Partner</h3>
+            <input type="radio" name="married" id="family-married-couple" value="couple" />
+            <label for="family-married-couple">
+              <img src="img/marital/married.png" />
+              <p>Couple</p>
+            </label>
+            <input type="radio" name="married" id="family-married-single"  value="single" />
+            <label for="family-married-single">
+              <img src="img/marital/single.png" />
+              <p>Single</p>
+            </label>
+          </div>
 
-          <label for="personal-spouse">Spouse Name</label>
-          <input type="text" name="spouse" id="personal-spouse" maxlength="100" />
+          <div class="center partner">
+            <label for="personal-partner">Partner's Name</label>
+            <input type="text" name="partner" id="personal-partner" maxlength="100" />
+          </div>
 
-          <label for="personal-numchildren">Number of Children</label>
-          <input type="number" name="numchildren" id="personal-numchildren" />
+          <div class="center">
+            <h3>Children?</h3>
+            <input type="radio" name="children" id="personal-children" value="children" />
+            <label for="personal-children">
+              <img src="img/marital/kids.png" />
+              <p>Have Kids</p>
+            </label>
+            <input type="radio" name="children" id="personal-no-children"  value="no children" />
+            <label for="personal-no-children">
+              <img src="img/marital/nokids.png" />
+              <p>No Kids</p>
+            </label>
+          </div>
         </fieldset>
 
         <fieldset class="referral page">

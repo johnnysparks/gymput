@@ -250,3 +250,11 @@ fieldset.goals div.time label img {
 fieldset.equipment label {
   vertical-align: top;
 }
+
+#personal-partner {
+  margin: 0 auto 10px auto;
+}
+
+fieldset.family div.partner {
+  display: none;
+}
