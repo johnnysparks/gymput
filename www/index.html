@@ -60,6 +60,9 @@
           $(this).trigger('click');
         });
 
+        $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
+        $("#personal-age").scroller("show");
+
         $('input[name="referral-source"]').change(function() { $('#referral-details').show() });
         $('input[name="married"]').change(function() {
           if($('input[name="married"]:checked').val() == 'couple') {
