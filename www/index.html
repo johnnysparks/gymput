@@ -63,7 +63,11 @@
         $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
         $("#personal-age").scroller("show");
 
-        $('input[name="referral-source"]').change(function() { $('#referral-details').show() });
+        $('input[name="referral-source"]').change(function() {
+            $('#referral-details p').text($(this).attr('data'));
+            $('#referral-details').show();
+        });
+
         $('input[name="married"]').change(function() {
           if($('input[name="married"]:checked').val() == 'couple') {
             $('div.partner').show();
@@ -187,17 +191,20 @@
         <fieldset class="referral page">
           <div class="center">
             <h3>How did you hear about us?</h3>
-            <input type="radio" name="referral-source" id="referral-source-friend" value="friend" />
+            <input type="radio" name="referral-source" data="Friend's Name"
+                   id="referral-source-friend" value="friend" />
             <label for="referral-source-friend">
               <img src="img/referral/friend.png" />
               <p>Friend</p>
             </label>
-            <input type="radio" name="referral-source" id="referral-source-online" value="online" />
+            <input type="radio" name="referral-source" data="Website Name"
+                   id="referral-source-online" value="online" />
             <label for="referral-source-online">
               <img src="img/referral/online.png" />
               <p>Online</p>
             </label>
-            <input type="radio" name="referral-source" id="referral-source-ad" value="ad" />
+            <input type="radio" name="referral-source" data="Ad Source"
+                   id="referral-source-ad" value="ad" />
             <label for="referral-source-ad">
               <img src="img/referral/ad.png" />
               <p>Ad</p>
@@ -206,7 +213,7 @@
             <div class="center" id="referral-details">
               <h3>Give them some love?</h3>
               <input type="text" name="referral-details-text" id="referral-details-text" maxlength="100" />
-              <p>Enter your friend's name, website, or ad source.</p>
+              <p></p>
             </div>
 
           </div>
