@@ -247,7 +247,7 @@ fieldset.goals div.time label img {
   margin: 0 auto;
 }
 
-fieldset.equipment label {
+fieldset.equipment label, fieldset.gym label {
   vertical-align: top;
 }
 
@@ -257,4 +257,13 @@ fieldset.equipment label {
 
 fieldset.family div.partner {
   display: none;
+}
+
+fieldset.gym label {
+  font-size: 0.5em;
+}
+
+fieldset.gym label img {
+  width: 90px;
+  height: 90px;
 }
