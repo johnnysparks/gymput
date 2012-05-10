@@ -232,7 +232,7 @@ fieldset.fitness label p {
   padding: 0;
 }
 
-fieldset.equipment label img, fieldset.goals div.frequency label img {
+fieldset.equipment label img, fieldset.goals div.frequency label img, fieldset.classes label img {
   width: 120px;
   height: 120px;
 }
@@ -251,7 +251,7 @@ fieldset.goals div.time label img {
   margin: 0 auto;
 }
 
-fieldset.equipment label, fieldset.gym label {
+fieldset.equipment label, fieldset.gym label, fieldset.classes label {
   vertical-align: top;
 }
 
