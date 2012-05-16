@@ -41,6 +41,19 @@
         });
         return result;
       }
+      function saveFormData() {
+        var reader = new FileReader();
+        reader.onloadend = function(evt) {
+          var archive = JSON.parse(evt.target.result);
+          archive.push(formData());
+          var writer = new FileWriter();
+          alert(JSON.stringify(archive));
+          writer.write(JSON.stringify(archive));
+        };
+
+        var d = new Date();
+        reader.readAsText("archive-" + (d.getMonth() + 1) + "-" + d.getFullYear())
+      }
       function nextPage() {
         curr_page = $('fieldset:visible');
         next_page = curr_page.next('fieldset');
@@ -49,6 +62,7 @@
           next_page.show();
           updateProgress();
         }
+        saveFormData();
       }
       function prevPage() {
         curr_page = $('fieldset:visible');
@@ -96,6 +110,11 @@
             $('div.partner').hide();
           }
         });
+        alert("made it?");
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
+            function(){console.log('got fs')},
+            function(e){console.log(e.target.error.code)});
+        alert("made it");
       }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
       $(document).ready(function(e) {
