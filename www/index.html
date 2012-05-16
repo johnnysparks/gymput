@@ -20,6 +20,27 @@
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.datetime.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/mobiscroll.ios.js"></script>
     <script type="text/javascript">
+      function formData() {
+        result = {};
+        $('form').find('input').each(function() {
+          t = $(this).attr('type');
+          n = $(this).attr('name');
+          v = $(this).val();
+
+          if(t === 'checkbox') {
+            if($(this).attr('checked')) {
+              if(n in result) {
+                result[n].push(v);
+              } else {
+                result[n] = [v];
+              }
+            }
+          } else {
+            result[n] = v;
+          }
+        });
+        return result;
+      }
       function nextPage() {
         curr_page = $('fieldset:visible');
         next_page = curr_page.next('fieldset');
@@ -103,7 +124,7 @@
             <img class="icon" src="img/home/nametag.png" />
             <div class="inputs">
               <label for="contact-name">Name</label>
-              <input type="text" name="contact-name" id="contact-name" maxlength="100" />
+              <input type="text" name="name" id="contact-name" maxlength="100" />
             </div>
           </div>
 
@@ -111,7 +132,7 @@
             <img class="icon" src="img/home/email.png" />
             <div class="inputs">
               <label for="contact-email">Email</label>
-              <input type="email" name="contact-email" id="contact-email" maxlength="100" />
+              <input type="email" name="email" id="contact-email" maxlength="100" />
             </div>
           </div>
 
@@ -135,12 +156,12 @@
         <fieldset class="personal page">
           <div class="center">
             <h3>Gender</h3>
-            <input type="radio" name="personal-gender" id="personal-gender-male" value="male" />
+            <input type="radio" name="gender" id="personal-gender-male" value="male" />
             <label for="personal-gender-male">
               <img src="img/personal/male_icon.png" />
               <p>Male</p>
             </label>
-            <input type="radio" name="personal-gender" id="personal-gender-female" value="male" />
+            <input type="radio" name="gender" id="personal-gender-female" value="female" />
             <label for="personal-gender-female">
               <img src="img/personal/female_icon.png" />
               <p>Female</p>
@@ -149,7 +170,7 @@
 
           <div class="center"><div>
             <h3>Birthday</h3>
-            <input type="hidden" name="personal-age" id="personal-age" size="4" value="1" />
+            <input type="hidden" name="age" id="personal-age" size="4" value="1" />
           </div></div>
         </fieldset>
 
@@ -212,7 +233,7 @@
 
             <div class="center" id="referral-details">
               <h3>Give them some love?</h3>
-              <input type="text" name="referral-details-text" id="referral-details-text" maxlength="100" />
+              <input type="text" name="referral-details" id="referral-details-text" maxlength="100" />
               <p></p>
             </div>
 
@@ -310,98 +331,98 @@
         <fieldset class="gym page center">
 
           <h3>What do you look for in a gym?</h3>
-          <input type="checkbox" name="gym-location"       id="gym-location"       value="location" />
+          <input type="checkbox" name="gym"       id="gym-location"       value="location" />
           <label for="gym-location"><img src="img/features/map.png" /><br />Location</label>
 
-          <input type="checkbox" name="gym-price"          id="gym-price"          value="price" />
+          <input type="checkbox" name="gym"          id="gym-price"          value="price" />
           <label for="gym-price"><img src="img/features/price.png" /><br />Price</label>
           
-          <input type="checkbox" name="gym-equip-variety"  id="gym-equip-variety"  value="equip-variety" />
+          <input type="checkbox" name="gym"  id="gym-equip-variety"  value="equip-variety" />
           <label for="gym-equip-variety"><img src="img/features/equip_variety.png" /><br />Equipment<br />Variety</label>
 
-          <input type="checkbox" name="gym-group-exercise" id="gym-group-exercise" value="group-exercise" />
+          <input type="checkbox" name="gym" id="gym-group-exercise" value="group-exercise" />
           <label for="gym-group-exercise"><img src="img/features/group.png" /><br />Group<br />Exercise</label>
 
-          <input type="checkbox" name="gym-trainer-availability"  id="gym-trainer-availability"  value="trainer-availability" />
+          <input type="checkbox" name="gym"  id="gym-trainer-availability"  value="trainer-availability" />
           <label for="gym-trainer-availability"><img src="img/features/trainer.png" /><br />Trainer<br />Availability</label>
 
-          <input type="checkbox" name="gym-contract-flex"  id="gym-contract-flex"  value="contract-flex" />
+          <input type="checkbox" name="gym"  id="gym-contract-flex"  value="contract-flex" />
           <label for="gym-contract-flex"><img src="img/features/contract.png" /><br />Contract<br />Flexibility</label>
 
-          <input type="checkbox" name="gym-equip-access"   id="gym-equip-access"   value="equip-access" />
+          <input type="checkbox" name="gym"   id="gym-equip-access"   value="equip-access" />
           <label for="gym-equip-access"><img src="img/features/equip_avil.png" /><br />Equipment<br />Access</label>
 
-          <input type="checkbox" name="gym-equip-modern"   id="gym-equip-modern"   value="equip-modern" />
+          <input type="checkbox" name="gym"   id="gym-equip-modern"   value="equip-modern" />
           <label for="gym-equip-modern"><img src="img/features/new_equip.png" /><br />Modern<br />Equipment</label>
 
-          <input type="checkbox" name="gym-education"      id="gym-education"      value="education" />
+          <input type="checkbox" name="gym"      id="gym-education"      value="education" />
           <label for="gym-education"><img src="img/features/education.png" /><br />Fitness<br />Education</label>
 
-          <input type="checkbox" name="gym-childcare"      id="gym-childcare"      value="childcare" />
+          <input type="checkbox" name="gym"      id="gym-childcare"      value="childcare" />
           <label for="gym-childcare"><img src="img/features/childcare.png" /><br />Childcare</label>
 
-          <input type="checkbox" name="gym-massage"        id="gym-massage"        value="massage" />
+          <input type="checkbox" name="gym"        id="gym-massage"        value="massage" />
           <label for="gym-massage"><img src="img/features/massage.png" /><br />Massage</label>
 
-          <input type="checkbox" name="gym-tanning"        id="gym-tanning"        value="tanning" />
+          <input type="checkbox" name="gym"        id="gym-tanning"        value="tanning" />
           <label for="gym-tanning"><img src="img/features/tanning.png" /><br />Tanning</label>
 
-          <input type="checkbox" name="gym-food"           id="gym-food"           value="food" />
+          <input type="checkbox" name="gym"           id="gym-food"           value="food" />
           <label for="gym-food"><img src="img/features/nutrition.png" /><br />Healthy<br />Food</label>
 
-          <input type="checkbox" name="gym-atmosphere"     id="gym-atmosphere"     value="atmosphere" />
+          <input type="checkbox" name="gym"     id="gym-atmosphere"     value="atmosphere" />
           <label for="gym-atmosphere"><img src="img/features/atmosphere.png" /><br />Atmosphere</label>
 
-          <input type="checkbox" name="gym-flex-hours"    id="gym-flex-hours"      value="flex-hours" />
+          <input type="checkbox" name="gym"    id="gym-flex-hours"      value="flex-hours" />
           <label for="gym-flex-hours"><img src="img/features/flex_time.png" /><br />Flexible<br />Hours</label>
 
         </fieldset>
 
         <fieldset class="equipment page center">
             <h3>Which equipment do you plan to use?</h3>
-            <input type="checkbox" name="equipment-free-weights"    id="equipment-free-weights"    value="free-weights" />
+            <input type="checkbox" name="equipment"    id="equipment-free-weights"    value="free-weights" />
             <label for="equipment-free-weights"><img src="img/equipment/freeweights.png" /><br />Free<br/>weights</label>
-            <input type="checkbox" name="equipment-weight-machines" id="equipment-weight-machines" value="weight-machines" />
+            <input type="checkbox" name="equipment" id="equipment-weight-machines" value="weight-machines" />
             <label for="equipment-weight-machines"><img src="img/equipment/weightmachines.png" /><br />Weight<br/>Machines</label>
-            <input type="checkbox" name="equipment-treadmill"       id="equipment-treadmill"       value="treadmill" />
+            <input type="checkbox" name="equipment"       id="equipment-treadmill"       value="treadmill" />
             <label for="equipment-treadmill"><img src="img/equipment/treadmill.png" /><br />Treadmill<br/></label>
-            <input type="checkbox" name="equipment-stationary-bike" id="equipment-stationary-bike" value="stationary-bike" />
+            <input type="checkbox" name="equipment" id="equipment-stationary-bike" value="stationary-bike" />
             <label for="equipment-stationary-bike"><img src="img/equipment/stationarybike.png" /><br />Stationary<br/>Bike</label>
-            <input type="checkbox" name="equipment-elliptical"      id="equipment-elliptical"      value="elliptical" />
+            <input type="checkbox" name="equipment"      id="equipment-elliptical"      value="elliptical" />
             <label for="equipment-elliptical"><img src="img/equipment/elliptical.png" /><br />Elliptical</label>
-            <input type="checkbox" name="equipment-aquatics"        id="equipment-aquatics"        value="aquatics" />
+            <input type="checkbox" name="equipment"        id="equipment-aquatics"        value="aquatics" />
             <label for="equipment-aquatics"><img src="img/equipment/aquatics.png" /><br />Aquatics</label>
-            <input type="checkbox" name="equipment-racquetball"     id="equipment-racquetball"     value="racquetball" />
+            <input type="checkbox" name="equipment"     id="equipment-racquetball"     value="racquetball" />
             <label for="equipment-racquetball"><img src="img/equipment/racquetball.png" /><br />Racquetball</label>
-            <input type="checkbox" name="equipment-basketball"      id="equipment-basketball" value="basketball" />
+            <input type="checkbox" name="equipment"      id="equipment-basketball" value="basketball" />
             <label for="equipment-basketball"><img src="img/equipment/basketball.png" /><br />Basketball</label>
-            <input type="checkbox" name="equipment-tennis"          id="equipment-tennis" value="tennis" />
+            <input type="checkbox" name="equipment"          id="equipment-tennis" value="tennis" />
             <label for="equipment-tennis"><img src="img/equipment/tennis.png" /><br />Tennis</label>
-            <input type="checkbox" name="equipment-volleyball"      id="equipment-volleyball" value="volleyball" />
+            <input type="checkbox" name="equipment"      id="equipment-volleyball" value="volleyball" />
             <label for="equipment-volleyball"><img src="img/equipment/volleyball.png" /><br />Volleyball</label>
         </fieldset>
 
         <fieldset class="classes page center">
             <h3>Interested in classes?</h3>
-            <input type="checkbox" name="classes-aerobic"  id="classes-aerobic"  value="aerobic" />
+            <input type="checkbox" name="classes"  id="classes-aerobic"  value="aerobic" />
             <label for="classes-aerobic"><img src="img/classes/aerobics.png" /><br />Aerobic &amp;<br />Step</label>
 
-            <input type="checkbox" name="classes-yoga"     id="classes-yoga"     value="yoga" />
+            <input type="checkbox" name="classes"     id="classes-yoga"     value="yoga" />
             <label for="classes-yoga"><img src="img/classes/yoga.png" /><br />Yoga &amp;<br />T'ai Chi</label>
 
-            <input type="checkbox" name="classes-dance"    id="classes-dance"    value="dance" />
+            <input type="checkbox" name="classes"    id="classes-dance"    value="dance" />
             <label for="classes-dance"><img src="img/classes/dance.png" /><br />Dance &amp;<br />Zumba</label>
 
-            <input type="checkbox" name="classes-spinning" id="classes-spinning" value="spinning" />
+            <input type="checkbox" name="classes" id="classes-spinning" value="spinning" />
             <label for="classes-spinning"><img src="img/classes/spinning.png" /><br />Spinning</label>
 
-            <input type="checkbox" name="classes-bootcamp" id="classes-bootcamp" value="bootcamp" />
+            <input type="checkbox" name="classes" id="classes-bootcamp" value="bootcamp" />
             <label for="classes-bootcamp"><img src="img/classes/bootcamp.png" /><br />Bootcamp</label>
 
-            <input type="checkbox" name="classes-senior"   id="classes-senior"   value="senior" />
+            <input type="checkbox" name="classes"   id="classes-senior"   value="senior" />
             <label for="classes-senior"><img src="img/classes/senior.png" /><br />Senior</label>
 
-            <input type="checkbox" name="classes-martial"  id="classes-martial"  value="martial" />
+            <input type="checkbox" name="classes"  id="classes-martial"  value="martial" />
             <label for="classes-martial"><img src="img/classes/martial_arts.png" /><br />Martial<br />Arts</label>
 
         </fieldset>
