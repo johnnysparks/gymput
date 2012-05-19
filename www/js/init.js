@@ -1,24 +1,3 @@
-function formData() {
-  result = {};
-  $('form').find('input').each(function() {
-    t = $(this).attr('type');
-    n = $(this).attr('name');
-    v = $(this).val();
-
-    if(t === 'checkbox') {
-      if($(this).attr('checked')) {
-        if(n in result) {
-          result[n].push(v);
-        } else {
-          result[n] = [v];
-        }
-      }
-    } else {
-      result[n] = v;
-    }
-  });
-  return result;
-}
 function nextPage() {
   curr_page = $('fieldset:visible');
   next_page = curr_page.next('fieldset');
