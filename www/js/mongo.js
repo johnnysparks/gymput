@@ -71,14 +71,6 @@ var Mongo = Koi.define({
   },
 
 /**
-* find - retrieves the documents matching a query, and allows for
-*        only certain fields to be returned
-*  @param {object}    options: see mongohq documentation
-*  @param {function}  callback: success handler function
-*/
-  find: function(options, callback) { // impliment here},
-
-/**
 * deleteAll - deletes collection
 *  @param {function}  callback: success handler function
 */

@@ -5,13 +5,16 @@ describe('Mongo', function() {
   var callback      = function( res ){ response = res; }
   var update_object = { name: "johnny", phone: "123-456-1212" };
   var savedId;
+  _RISKY_MODE = true;
 
   beforeEach(function(){
     response = false;
     savedId  = false;
   });
   afterEach(function(){
-    mongo.deleteAll(function(){});
+    response = false;
+    mongo.deleteAll(callback);
+    waitsFor(function(){ return response; }, "Update response never arrived", 3000);
   });
 
   it('saves a document to the collection', function() {
