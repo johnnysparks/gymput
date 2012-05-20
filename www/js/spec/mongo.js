@@ -1,11 +1,17 @@
 describe('Mongo', function() {
-  var response = false;
-  var entry    = { name: "joe", phone: "1234", email: "jklh@afdoh", address: "hjl1234" };
-  var mongo    = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
-  var callback = function( o ){ response = o; }
+  var response      = false;
+  var entry         = { name: "joe", phone: "1234", email: "jklh@afdoh", address: "hjl1234" };
+  var mongo         = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects-test" });
+  var callback      = function( res ){ response = res; }
+  var update_object = { name: "johnny", phone: "123-456-1212" };
+  var savedId;
 
   beforeEach(function(){
     response = false;
+    savedId  = false;
+  });
+  afterEach(function(){
+    mongo.deleteAll(function(){});
   });
 
   it('saves a document to the collection', function() {
@@ -19,24 +25,75 @@ describe('Mongo', function() {
 
   });
 
-  it('retrives a document from a collection by it\'s mongo id', function() {
+  it('retrives a document from a collection by its mongo id', function() {
 
-    mongo.get("4fb074c5fb3ac70001000028", callback);
-
-    waitsFor(function(){ return response; }, "Response never arrived", 3000);
     runs( function(){
-      expect(response._id.$oid).toEqual("4fb074c5fb3ac70001000028");
+      mongo.insert(entry, callback);
+    });
+    waitsFor(function(){ return response; }, "Response never arrived", 3000);
+
+    runs( function(){
+      savedId = response._id;
+      console.log( response );
+      response = false;
+      mongo.get(savedId, callback);
+    });
+    waitsFor(function(){ return response; }, "Insertion response never arrived", 3000);
+
+    runs( function(){
+      expect(response._id.$oid).toEqual(savedId);
+    });
+
+  });
+
+  it('updates a document with a merged in object by its mongo id', function() {
+
+    runs( function(){
+      mongo.insert(entry, callback);
+    });
+    waitsFor(function(){ return response; }, "Insertion response never arrived", 3000);
+
+    runs( function(){
+      savedId = response._id;
+      response = false;
+      mongo.update(savedId, update_object, callback);
+    });
+    waitsFor(function(){ return response; }, "Update response never arrived", 3000);
+
+    runs( function(){
+      expect(response.ok).toEqual(1)
     });
   });
 
-  it('updates a document with a merged in object by it\'s mongo id', function() {
-    var update_object = { name: "johnny" };
-    mongo.update("4fb074c5fb3ac70001000028", update_object, callback);
+  it('deletes all documents in a collection', function() {
 
-    waitsFor(function(){ return response; }, "Response never arrived", 3000);
+    runs( function(){ 
+      response = false;
+      mongo.insert(entry, callback);
+    });
+    waitsFor(function(){ return response; }, "Insertion response never arrived", 3000);
+
+    runs( function(){ 
+      response = false;
+      mongo.insert(entry, callback);
+    });
+    waitsFor(function(){ return response; }, "Insertion response never arrived", 3000);
+
+    runs( function(){ 
+      response = false;
+      mongo.insert(entry, callback);
+    });
+    waitsFor(function(){ return response; }, "Insertion response never arrived", 3000);
 
     runs( function(){
-      expect(response.name).toEqual("johnny");
+      response = false;
+      mongo.deleteAll(callback);
+    });
+
+    waitsFor(function(){ return response; }, "Update response never arrived", 3000);
+
+    runs( function(){
+      expect(response.ok).toEqual(1)
     });
   });
 });
