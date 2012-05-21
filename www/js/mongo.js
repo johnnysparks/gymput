@@ -45,7 +45,6 @@ var Mongo = Koi.define({
 *  @param {function}  callback: success handler function
 */
   update: function(obj_id, updated, callback) {
-    console.log( updated );
     $.ajax({
       type: "put",
       data: {"document" : { "$set": updated }, 'safe': true },
@@ -62,7 +61,6 @@ var Mongo = Koi.define({
 *  @param {function}  callback: success handler function
 */
   get: function(obj_id, callback) {
-    console.log( this.doc_url + obj_id + this.url_api );
     $.ajax({
       type: "get",
       url: this.doc_url + obj_id + this.url_api,

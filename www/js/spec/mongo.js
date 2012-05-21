@@ -37,7 +37,6 @@ describe('Mongo', function() {
 
     runs( function(){
       savedId = response._id;
-      console.log( response );
       response = false;
       mongo.get(savedId, callback);
     });
