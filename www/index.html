@@ -6,120 +6,29 @@
     <meta charset="utf-8" />
 
     <!-- <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="style/ipad.css" type="text/css" /> -->
-    <link rel="stylesheet" media="all" href="style/reset.css" type="text/css" />
-    <link rel="stylesheet" media="all" href="style/oxygen.css" type="text/css" />
+    <link rel="stylesheet" media="all" href="style/vendor/reset.css" type="text/css" />
+    <link rel="stylesheet" media="all" href="style/vendor/ui-lightness/jquery-ui-1.8.19.css" type="text/css" />
+    <link rel="stylesheet" media="all" href="style/vendor/mobiscroll.core.css" type="text/css" />
+    <link rel="stylesheet" media="all" href="style/vendor/mobiscroll.ios.css" type="text/css" />
+    <link rel="stylesheet" media="all" href="font/oxygen.css" type="text/css" />
+
     <link rel="stylesheet" media="all" href="style/ipad.css" type="text/css" />
-    <link rel="stylesheet" media="all" href="style/ui-lightness/jquery-ui-1.8.19.css" type="text/css" />
-    <link rel="stylesheet" media="all" href="style/mobiscroll.core.css" type="text/css" />
-    <link rel="stylesheet" media="all" href="style/mobiscroll.ios.css" type="text/css" />
-    <script type="text/javascript" charset="utf-8" src="js/cordova-1.5.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery-ui-1.8.19.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/jquery.touchSwipe-1.2.5.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/mobiscroll.core.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/mobiscroll.datetime.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/mobiscroll.ios.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/vendor/cordova-1.5.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/jquery-ui-1.8.19.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/jquery.touchSwipe-1.2.5.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/mobiscroll.core.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/mobiscroll.datetime.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/mobiscroll.ios.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/koi-0.2.1.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/mongo.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/util.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/init.js"></script>
     <script type="text/javascript">
-      function formData() {
-        result = {};
-        $('form').find('input').each(function() {
-          t = $(this).attr('type');
-          n = $(this).attr('name');
-          v = $(this).val();
-
-          if(t === 'checkbox') {
-            if($(this).attr('checked')) {
-              if(n in result) {
-                result[n].push(v);
-              } else {
-                result[n] = [v];
-              }
-            }
-          } else {
-            result[n] = v;
-          }
-        });
-        return result;
-      }
-      function saveFormData() {
-        var reader = new FileReader();
-        reader.onloadend = function(evt) {
-          var archive = JSON.parse(evt.target.result);
-          archive.push(formData());
-          var writer = new FileWriter();
-          alert(JSON.stringify(archive));
-          writer.write(JSON.stringify(archive));
-        };
-
-        var d = new Date();
-        reader.readAsText("archive-" + (d.getMonth() + 1) + "-" + d.getFullYear())
-      }
-      function nextPage() {
-        curr_page = $('fieldset:visible');
-        next_page = curr_page.next('fieldset');
-        if(next_page.length) {
-          curr_page.hide();
-          next_page.show();
-          updateProgress();
-        }
-        saveFormData();
-      }
-      function prevPage() {
-        curr_page = $('fieldset:visible');
-        prev_page = curr_page.prev('fieldset');
-        if(prev_page.length) {
-          curr_page.hide();
-          prev_page.show();
-          updateProgress();
-        }
-      }
-      function updateProgress() {
-        $('#progress').progressbar({value: 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1)});
-      }
-
-      function init() {
-        $("body").swipe({swipe: function(event, direction) {
-          if(direction === 'left') {
-            nextPage();
-          } else if(direction === 'right') {
-            prevPage();
-          }
-        }});
-        $("#progress").progressbar({ value: 0 });
-        $(".nav.next").click(nextPage);
-        $(".nav.prev").click(prevPage);
-        $('label').bind('touchstart', function(e) {
-          $('#' + $(this).attr('for')).trigger('click');
-        });
-        $('.nav').bind('touchstart', function(e) {
-          $(this).trigger('click');
-        });
-
-        $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
-        $("#personal-age").scroller("show");
-
-        $('input[name="referral-source"]').change(function() {
-            $('#referral-details p').text($(this).attr('data'));
-            $('#referral-details').show();
-        });
-
-        $('input[name="married"]').change(function() {
-          if($('input[name="married"]:checked').val() == 'couple') {
-            $('div.partner').show();
-          } else {
-            $('div.partner').hide();
-          }
-        });
-        alert("made it?");
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
-            function(){console.log('got fs')},
-            function(e){console.log(e.target.error.code)});
-        alert("made it");
-      }
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
-      $(document).ready(function(e) {
-        init();
-      });
+      $(document).ready(init);
     </script>
   </head>
 
@@ -130,6 +39,7 @@
           <img class="logo" src="img/gyms/supreme.jpg" alt="Supreme Fitness" />
           <h2>Welcome!</h2>
           <p>We'd like to know a little about you and your fitness goals.</p>
+          <p><a href="SpecRunner.html">See how perfect our code is!</a></p>
           <ul class="social" >
             <li><a href="http://facebook.com"><img src="img/facebook.png" alt="Facebook" /></a></li>
             <li><a href="http://twitter.com"><img src="img/twitter.png" alt="Twitter" /></a></li>
