@@ -45,20 +45,6 @@ var JsonFile = Koi.define({
     $('body').append( '<p style="color:red;">sf_error: ' + message + '</p>') ;
   },
 
-  list: function(callback){
-    var reader = self.fs.root.createReader();
-    var read_callback = function( entries ){
-      for( i in entries ){ 
-        if( _RISKY_MODE ){ print( entries[i].name );}
-        self.last_list.push( entries[i].name );
-      }
-      callback( entries );
-    }
-
-    self.last_list = [];
-    reader.readEntries(read_callback, self.fsError);
-  },
-
   ensurePath: function(dir, callback) {
     var path = dir.split('/');
     var get_dir = function( fsDir ){
@@ -72,23 +58,69 @@ var JsonFile = Koi.define({
     get_dir( self.fs.root );
   },
 
-  writeLog: function(path, data, callback){
+  write: function(path, data, callback ){
+    self.openFile( path, function( fileEntry ){
+      fileEntry.createWriter( function( fileWriter ){                        // write the file contents
+        fileWriter.onwrite = callback;                                       // final callback
+        fileWriter.write( JSON.stringify(data) );
+      }, self.fsError);
+    });
+  },
+
+  read: function( path, callback ){
+    self.openFile( path, function( fileEntry ){
+      var fileReader = new FileReader();
+      fileReader.onloadend = function( e ){
+        if( e.target.result === "" ){
+          callback( [] );
+        } else {
+          callback( JSON.parse( e.target.result ) );                                       // final callback
+        }
+      }
+      fileReader.readAsText( fileEntry );
+    });
+  },
+
+  openFile: function( path, callback ){
     var fileName = path.split('/').pop();
     self.ensurePath( path, function( fsDir ){                                  // ensure the path
       fsDir.getFile( fileName, {create:true}, function( fileEntry ){           // create a file writer for that directory
-        fileEntry.createWriter( function( fileWriter ){                        // write the file contents
-          fileWriter.onwrite = callback;                                       // final callback
-          fileWriter.write( JSON.stringify(data) );
-        }, self.fsError);
+        callback( fileEntry );
       }, self.fsError);
     });
-  }
+  },
 
+  append: function( path, addData, callback ){
+    self.read( path, function( readData ){
+      if( readData instanceof Array ){
+        readData.push( addData );
+      } else {
+        readData = [ addData ];
+      }
+      self.write( path, readData, callback );
+    });
+  },
+
+  wipeDisk: function( callback ){
+    if( !_RISKY_MODE ) return false;
+    var reader = self.fs.root.createReader();
+    reader.readEntries( function( entries ){
+      var wipe = function( entries ){
+        print( entries.length );
+        if( entries.length == 0 ){ callback(); return true; }
+        entry = entries.pop();
+        entry.removeRecursively( function(){
+          wipe( entries );
+        }, self.fsError);
+      }
+      wipe( entries );
+    }, self.fsError); 
+  }
 });
 
 function print( string ){
   if( typeof string == "string"){
-    $('body').append( '<p>' + string + '</p>') ;
+    $('body').append( '<p style="font-family: Monaco; color: #5e7d00; padding: 10px 0 0 20px; margin: 0px;">' + string + '</p>') ;
   } else {
     p = "";
     for( i in string ){
