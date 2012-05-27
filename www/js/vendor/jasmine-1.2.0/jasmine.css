@@ -34,7 +34,7 @@ body { background-color: #eeeeee; padding: 0; margin: 5px; overflow-y: scroll; }
 #HTMLReporter.showDetails .summaryMenuItem { font-weight: normal; text-decoration: inherit; }
 #HTMLReporter.showDetails .summaryMenuItem:hover { text-decoration: underline; }
 #HTMLReporter.showDetails .detailsMenuItem { font-weight: bold; text-decoration: underline; }
-#HTMLReporter.showDetails .summary { display: none; }
+/*#HTMLReporter.showDetails .summary { display: none; }*/
 #HTMLReporter.showDetails #details { display: block; }
 #HTMLReporter .summaryMenuItem { font-weight: bold; text-decoration: underline; }
 #HTMLReporter .summary { margin-top: 14px; }

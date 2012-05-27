@@ -1,3 +1,4 @@
+/*
 describe('Mongo', function() {
   var response      = false;
   var entry         = { name: "joe", phone: "1234", email: "jklh@afdoh", address: "hjl1234" };
@@ -99,3 +100,4 @@ describe('Mongo', function() {
     });
   });
 });
+*/
