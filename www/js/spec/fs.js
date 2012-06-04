@@ -1,16 +1,16 @@
 describe('JsonFile', function() {
-  var success       = false;
+  var success   = false;
   var jfile;
-  var log_file = "prospects/2012/08/05/8h209j3g1jiawf00001.json";
-  var log_data = { name: "joe", phone: "1234", email: "jklh@afdoh", address: "hjl1234" };
-  var callback      = function(e) { success = true; };
+  var log_file  = "prospects/2012/08/05/8h209j3g1jiawf00001.json";
+  var log_data  = { name: "joe", phone: "1234", email: "jklh@afdoh", address: "hjl1234" };
+  var callback  = function(e) { success = true; };
   _RISKY_MODE   = true;
 
   beforeEach(function(){
     runs(function(){
       jfile = new JsonFile();
     });
-    waitsFor(function(){ return jfile.fs }, "Error initializing file system.", 500);
+    waitsFor(function(){ return success }, "Error initializing file system.", 500);
   });
 
   afterEach(function(){
@@ -19,7 +19,7 @@ describe('JsonFile', function() {
 
   it('loads the filesystem', function() {
     runs( function(){
-      expect( jfile.fs );
+      expect( sucess );
     });
   });
 
