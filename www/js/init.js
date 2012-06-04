@@ -23,7 +23,8 @@ function updateProgress() {
   $('#progress').progressbar({value: 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1)});
   if( progress > 90 ){
     new_user_form = util.form2json('form');
-    mongo.insert( new_user_form, function(o){ alert(o); } );        
+    mongo.insert( new_user_form, function(o){ console.log(o); } );        
+    clear_form_elements('form');
   }
 }
 
@@ -64,4 +65,23 @@ function init() {
       $('div.partner').hide();
     }
   });
+}
+
+function clear_form_elements(ele) {
+
+    $(ele).find(':input').each(function() {
+        switch(this.type) {
+            case 'password':
+            case 'select-multiple':
+            case 'select-one':
+            case 'text':
+            case 'textarea':
+                $(this).val('');
+                break;
+            case 'checkbox':
+            case 'radio':
+                this.checked = false;
+        }
+    });
+
 }
