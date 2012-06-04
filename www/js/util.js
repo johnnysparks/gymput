@@ -33,7 +33,7 @@ var util = {
   
   json2csv: function( json ){
     // this method will break if fields contain doublequotes
-    var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
+    //var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
     var fields  = [];
     var csv     = [];
     var row     = false;
@@ -91,5 +91,3 @@ var util = {
   }
 };
 
-
-console.log( util.json2csv([]) );

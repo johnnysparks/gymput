@@ -73,6 +73,7 @@ h3 {
 }
 
 /* WELCOME PAGE STYLES */
+fieldset.complete img.logo,
 fieldset.welcome img.logo {
   margin: 20px auto;
   display: block;
@@ -80,6 +81,7 @@ fieldset.welcome img.logo {
   height: 115px;
 }
 
+fieldset.complete h2, 
 fieldset.welcome h2 {
   font-size: 200%;
   text-align: center;

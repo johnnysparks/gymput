@@ -24,11 +24,13 @@
     <script type="text/javascript" charset="utf-8" src="js/vendor/koi-0.2.1.js"></script>
 
     <script type="text/javascript" charset="utf-8" src="js/mongo.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/fs.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/util.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/init.js"></script>
+
     <script type="text/javascript">
       $(document).bind('touchmove',function(e) { e.preventDefault(); });
-      $(document).ready(init);
+      $(document).bind('deviceready', init );
     </script>
   </head>
 
@@ -39,7 +41,7 @@
           <img class="logo" src="img/gyms/supreme.jpg" alt="Supreme Fitness" />
           <h2>Welcome!</h2>
           <p style="margin:25px; font-size:24px">We'd like to know a little about you and your fitness goals.</p>
-          <p style="margin:25px; font-size:24px">Either swipe the screen or tap the right arrow at the bottom of the page to move forward.</p>
+          <p style="margin:25px; font-size:24px">To begin, swipe the screen or tap the right arrow at the bottom of the page.</p>
 <!--
           <p><a href="SpecRunner.html">See how perfect our code is!</a></p>
           <ul class="social" >

@@ -1,3 +1,5 @@
+var jfile, mongo;
+
 function nextPage() {
   curr_page = $('fieldset:visible');
   next_page = curr_page.next('fieldset');
@@ -17,10 +19,19 @@ function prevPage() {
   }
 }
 function updateProgress() {
+  var progress = 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1);
   $('#progress').progressbar({value: 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1)});
+  if( progress > 90 ){
+    new_user_form = util.form2json('form');
+    mongo.insert( new_user_form, function(o){ alert(o); } );        
+  }
 }
 
 function init() {
+
+  jfile = new JsonFile();
+  mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
+
   $("body").swipe({swipe: function(event, direction) {
     if(direction === 'left') {
       nextPage();
