@@ -32,8 +32,8 @@ var util = {
   },
   
   json2csv: function( json ){
-//    var json = {"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"};
-    var json = [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
+    // this method will break if fields contain doublequotes
+    var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
     var fields  = [];
     var csv     = [];
     var row     = false;
@@ -44,22 +44,29 @@ var util = {
       for( row in json ){
         fields = this.arrayUnique( fields, this.parallelize(json[row]).keys );
       }
-      for( row in json ){
-        csv.push([]);
+      for( row in json ){ csv.push([]);
         for( col in fields ){
-          console.log( json[row] );
           if( fields[col] in json[row] ){
-            console.log( json[row] );
-            csv[csv.length-1][col] = json[row][col];
+            if( json[row][fields[col]] instanceof Array ){
+              json[row][fields[col]] = json[row][fields[col]].join(' ; ');
+            }
+            csv[csv.length-1].push( json[row][fields[col]] );
           } else {
-            csv[csv.length-1][col] = "";
+            csv[csv.length-1].push(" ");
           }
         }
       } 
+    fields = '"'+ fields.join('","') +'"';
+
+    for( i in csv ){
+      csv[i] = csv[i].join('","');
     }
-    console.log( fields );
-    console.log( csv );
+    csv   = '"'+ csv.join('"\n"') +'"';
+    return fields + '\n' + csv;
+    }
+    
   },
+
   parallelize: function( obj ){
     var keys   = [];
     var values = [];
@@ -85,4 +92,4 @@ var util = {
 };
 
 
-
+console.log( util.json2csv([]) );
