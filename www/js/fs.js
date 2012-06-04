@@ -9,10 +9,11 @@ var JsonFile = Koi.define({
   last_error: null,
   fs        : false,
   last_list : false,
+  self      : false,
 
   init: function(options){
     options = options || {};
-    self = this;
+    self = this;    // big problem, this should be var self = this; but it seems to be breaking specs
     self.fs = false;
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.fsReady, self.fsError);
   },

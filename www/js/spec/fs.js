@@ -10,7 +10,7 @@ describe('JsonFile', function() {
     runs(function(){
       jfile = new JsonFile();
     });
-    waitsFor(function(){ return success }, "Error initializing file system.", 500);
+    waitsFor(function(){ return jfile.fs }, "Error initializing file system.", 500);
   });
 
   afterEach(function(){
@@ -19,7 +19,7 @@ describe('JsonFile', function() {
 
   it('loads the filesystem', function() {
     runs( function(){
-      expect( sucess );
+      expect( success );
     });
   });
 
