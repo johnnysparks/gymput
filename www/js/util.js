@@ -55,16 +55,16 @@ var util = {
             csv[csv.length-1].push("");
           }
         }
-      } 
-    fields = '"'+ fields.join('","') +'"';
+      }
+      fields = '"'+ fields.join('","') +'"';
 
-    for( i in csv ){
-      csv[i] = csv[i].join('","');
+      for( i in csv ){
+        csv[i] = csv[i].join('","');
+      }
+      csv   = '"'+ csv.join('"\n"') +'"';
+      return fields + '\n' + csv;
     }
-    csv   = '"'+ csv.join('"\n"') +'"';
-    return fields + '\n' + csv;
-    }
-    
+
   },
 
   parallelize: function( obj ){
