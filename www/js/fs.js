@@ -9,22 +9,20 @@ var JsonFile = Koi.define({
   last_error: null,
   fs        : false,
   last_list : false,
-  self      : false,
 
   init: function(options){
     options = options || {};
-    self = this;    // big problem, this should be var self = this; but it seems to be breaking specs
-    self.fs = false;
+    var self = this;    // big problem, this should be var self = this; but it seems to be breaking specs
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.fsReady, self.fsError);
   },
 
   fsReady: function( fileSystem ){
-    //var self = this;
+    var self = this;
     self.fs = fileSystem;
   },
 
   fsError: function( e ){
-    //var self = this;
+    var self = this;
     var errors = { 
       "NOT_FOUND_ERR"                : FileError.NOT_FOUND_ERR,
       "SECURITY_ERR"                 : FileError.SECURITY_ERR,
@@ -49,7 +47,7 @@ var JsonFile = Koi.define({
   },
 
   ensurePath: function(dir, callback) {
-    //var self = this;
+    var self = this;
     var path = dir.split('/');
     var get_dir = function( fsDir ){
       if( path.length == 1 ){
@@ -63,7 +61,7 @@ var JsonFile = Koi.define({
   },
 
   write: function(path, data, callback ){
-    //var self = this;
+    var self = this;
     self.openFile( path, function( fileEntry ){
       fileEntry.createWriter( function( fileWriter ){                        // write the file contents
         fileWriter.onwrite = callback;                                       // final callback
@@ -73,7 +71,7 @@ var JsonFile = Koi.define({
   },
 
   read: function( path, callback ){
-    //var self = this;
+    var self = this;
     self.openFile( path, function( fileEntry ){
       var fileReader = new FileReader();
       fileReader.onloadend = function( e ){
@@ -88,7 +86,7 @@ var JsonFile = Koi.define({
   },
 
   openFile: function( path, callback ){
-    //var self = this;
+    var self = this;
     var fileName = path.split('/').pop();
     self.ensurePath( path, function( fsDir ){                                  // ensure the path
       fsDir.getFile( fileName, {create:true}, function( fileEntry ){           // create a file writer for that directory
@@ -98,7 +96,7 @@ var JsonFile = Koi.define({
   },
 
   append: function( path, addData, callback ){
-    //var self = this;
+    var self = this;
     self.read( path, function( readData ){
       if( readData instanceof Array ){
         readData.push( addData );
@@ -111,7 +109,7 @@ var JsonFile = Koi.define({
 
   wipeDisk: function( callback ){
     if( !_RISKY_MODE ) return false;
-    //var self = this;
+    var self = this;
     var reader = self.fs.root.createReader();
     reader.readEntries( function( entries ){
       var wipe = function( entries ){
