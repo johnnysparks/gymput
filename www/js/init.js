@@ -43,14 +43,11 @@ function init() {
     }
   }});
   $("#progress").progressbar({ value: 0 });
-  $(".nav.next").click(nextPage);
-  $(".nav.prev").click(prevPage);
   $('label').bind('touchstart', function(e) {
     $('#' + $(this).attr('for')).trigger('click');
   });
-  $('.nav').bind('touchstart', function(e) {
-    $(this).trigger('click');
-  });
+  $('.nav.prev').bind('touchstart', function(e) { prevPage(); });
+  $('.nav.next').bind('touchstart', function(e) { nextPage(); });
 
   $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
   $("#personal-age").scroller("show");
