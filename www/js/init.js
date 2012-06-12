@@ -32,10 +32,8 @@ function init() {
 
 //  jfile = new JsonFile();
   mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
-  alert("pre");
-  cloud = new Cloud();
-  cloud.set('name', 'johnny fuchs');
-  alert("here");
+  //cloud = new Cloud();
+  //cloud.set('name', 'johnny fuchs');
 
   $("body").swipe({swipe: function(event, direction) {
     if(direction === 'left') {
