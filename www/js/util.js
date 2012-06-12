@@ -88,6 +88,10 @@ var util = {
       }
     }
     return this.parallelize( keyify ).keys;
+  },
+
+  bind: function(scope, fn) {
+    return function () { fn.apply(scope, arguments); }
   }
 };
 

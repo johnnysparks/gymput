@@ -12,17 +12,14 @@ var JsonFile = Koi.define({
 
   init: function(options){
     options = options || {};
-    var self = this;    // big problem, this should be var self = this; but it seems to be breaking specs
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, self.fsReady, self.fsError);
+    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, util.bind(this, this.fsReady), util.bind(this, this.fsError));
   },
 
   fsReady: function( fileSystem ){
-    var self = this;
-    self.fs = fileSystem;
+    this.fs = fileSystem;
   },
 
   fsError: function( e ){
-    var self = this;
     var errors = { 
       "NOT_FOUND_ERR"                : FileError.NOT_FOUND_ERR,
       "SECURITY_ERR"                 : FileError.SECURITY_ERR,
@@ -47,32 +44,30 @@ var JsonFile = Koi.define({
   },
 
   ensurePath: function(dir, callback) {
-    var self = this;
     var path = dir.split('/');
     var get_dir = function( fsDir ){
       if( path.length == 1 ){
         callback( fsDir );
       } else {
         var name = path.shift();
-        fsDir.getDirectory(name, {create:true}, get_dir , self.fsError);
+        fsDir.getDirectory(name, {create:true}, get_dir , util.bind(this,this.fsError));
       }
     }
-    get_dir( self.fs.root );
+    get_dir( this.fs.root );
   },
 
   write: function(path, data, callback ){
     var self = this;
-    self.openFile( path, function( fileEntry ){
+    this.openFile( path, function( fileEntry ){
       fileEntry.createWriter( function( fileWriter ){                        // write the file contents
         fileWriter.onwrite = callback;                                       // final callback
         fileWriter.write( JSON.stringify(data) );
-      }, self.fsError);
+      }, util.bind(self,self.fsError));
     });
   },
 
   read: function( path, callback ){
-    var self = this;
-    self.openFile( path, function( fileEntry ){
+    this.openFile( path, function( fileEntry ){
       var fileReader = new FileReader();
       fileReader.onloadend = function( e ){
         if( e.target.result === "" ){
@@ -86,18 +81,17 @@ var JsonFile = Koi.define({
   },
 
   openFile: function( path, callback ){
-    var self = this;
     var fileName = path.split('/').pop();
-    self.ensurePath( path, function( fsDir ){                                  // ensure the path
+    this.ensurePath( path, function( fsDir ){                                  // ensure the path
       fsDir.getFile( fileName, {create:true}, function( fileEntry ){           // create a file writer for that directory
         callback( fileEntry );
-      }, self.fsError);
+      }, this.fsError);
     });
   },
 
   append: function( path, addData, callback ){
     var self = this;
-    self.read( path, function( readData ){
+    this.read( path, function( readData ){
       if( readData instanceof Array ){
         readData.push( addData );
       } else {
@@ -109,17 +103,17 @@ var JsonFile = Koi.define({
 
   wipeDisk: function( callback ){
     if( !_RISKY_MODE ) return false;
-    var self = this;
-    var reader = self.fs.root.createReader();
+    var self = this
+    var reader = this.fs.root.createReader();
     reader.readEntries( function( entries ){
       var wipe = function( entries ){
         if( entries.length == 0 ){ callback(); return true; }
         entry = entries.pop();
         entry.removeRecursively( function(){
           wipe( entries );
-        }, self.fsError);
+        }, util.bind(self,self.fsError));
       }
       wipe( entries );
-    }, self.fsError); 
+    }, util.bind(self,self.fsError)); 
   }
 });
