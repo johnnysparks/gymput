@@ -1,4 +1,4 @@
-var jfile, mongo;
+var jfile, mongo, cloud;
 
 function nextPage() {
   curr_page = $('fieldset:visible');
@@ -30,8 +30,12 @@ function updateProgress() {
 
 function init() {
 
-  jfile = new JsonFile();
+//  jfile = new JsonFile();
   mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
+  alert("pre");
+  cloud = new Cloud();
+  cloud.set('name', 'johnny fuchs');
+  alert("here");
 
   $("body").swipe({swipe: function(event, direction) {
     if(direction === 'left') {

@@ -24,7 +24,6 @@ var JsonFile = Koi.define({
   },
 
   fsError: function( e ){
-    alert("error");
     //var self = this;
     var errors = { 
       "NOT_FOUND_ERR"                : FileError.NOT_FOUND_ERR,
