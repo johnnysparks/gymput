@@ -33,7 +33,7 @@ var util = {
   
   json2csv: function( json ){
     // this method will break if fields contain doublequotes
-    //var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
+    var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":'12" moblacd"34',"email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
     var fields  = [];
     var csv     = [];
     var row     = false;
@@ -48,11 +48,11 @@ var util = {
         for( col in fields ){
           if( fields[col] in json[row] ){
             if( json[row][fields[col]] instanceof Array ){
-              json[row][fields[col]] = json[row][fields[col]].join(' ; ');
+              json[row][fields[col]] = json[row][fields[col]].join(', ');
             }
-            csv[csv.length-1].push( json[row][fields[col]] );
+            csv[csv.length-1].push(json[row][fields[col]].replace(/('|")/g, "'"));
           } else {
-            csv[csv.length-1].push(" ");
+            csv[csv.length-1].push("");
           }
         }
       } 
@@ -94,4 +94,3 @@ var util = {
     return function () { fn.apply(scope, arguments); }
   }
 };
-
