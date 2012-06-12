@@ -6,7 +6,7 @@ var util = {
       name  = $(this).attr('name');
       value = $(this).val();
 
-      if(t === 'checkbox') {
+      if(type === 'checkbox') {
         if($(this).attr('checked')) {
           if(name in result) {
             result[name].push(value);
