@@ -1,23 +1,19 @@
 var util = {
   form2json: function (formSelector) {
-    result = {};
-    $(formSelector).find('input').each(function() {
-      type  = $(this).attr('type');
-      name  = $(this).attr('name');
-      value = $(this).val();
-
-      if(type === 'checkbox') {
-        if($(this).attr('checked')) {
-          if(name in result) {
-            result[name].push(value);
-          } else {
-            result[name] = [value];
-          }
-        }
+    var result = {};
+    $(formSelector).find('input[type="text"],input[type="hidden"],input[type="radio"]:checked').each(function() {
+      result[$(this).attr('name')] = $(this).val();
+    });
+    $(formSelector).find('input[type="checkbox"]:checked').each(function() {
+      var name  = $(this).attr('name');
+      var value = $(this).val();
+      if(name in result) {
+        result[name].push(value);
       } else {
-        result[name] = value;
+        result[name] = [value];
       }
     });
+    delete result[undefined]; // remove values for unnamed inputs
     return result;
   },
 
