@@ -33,4 +33,39 @@ describe('Util', function() {
       });
     });
   });
+  describe('json2csv', function() {
+    it('converts a blank object', function() {
+      expect(util.json2csv({})).toEqual('');
+    });
+    it('converts a simple object', function() {
+      expect(util.json2csv({a:1,b:2})).toEqual("a,b\n1,2");
+    });
+    it('converts an array of simple objects', function() {
+      expect(util.json2csv([{a:1,b:2}, {a:3,b:4}, {a:5,b:6}, {a:7,b:8}])).toEqual("a,b\n1,2\n3,4\n5,6\n7,8");
+    });
+    it('interpolates disparate objects', function() {
+      expect(util.json2csv([{a:1,b:2}, {b:3,c:4}])).toEqual("a,b,c\n1,2,\n,3,4");
+    });
+    it('quotes commas in value', function() {
+      expect(util.json2csv({a:','})).toEqual('a\n","');
+    });
+    it('quotes commas in key', function() {
+      expect(util.json2csv({'a,b':1})).toEqual('"a,b"\n1');
+    });
+    it('quotes quotes in value', function() {
+      expect(util.json2csv({a:'"hello", world'})).toEqual('a\n"\\"hello\\", world"');
+    });
+    it('quotes quotes in key', function() {
+      expect(util.json2csv({'a "b"':1})).toEqual('"a \\"b\\""\n1');
+    });
+    it('includes array values', function() {
+      expect(util.json2csv({a:[1,2,3]})).toEqual('a\n"1,2,3"');
+    });
+    it('fixes dangerous array values', function() {
+      expect(util.json2csv({a:[',','"']})).toEqual('a\n"\\",\\",\\"\\\\"\\""');
+    });
+    it('interpolates disparate objects with commas in keys', function() {
+      expect(util.json2csv([{"a,b":1}, {"b,c":2}])).toEqual('"a,b","b,c"\n1,\n,2');
+    });
+  });
 });

@@ -28,62 +28,33 @@ var util = {
   },
   
   json2csv: function( json ){
-    // this method will break if fields contain doublequotes
-    var json = json || [{"name":"joe","test":"clear","phone":"1234","email":"jklh@afdoh","address":['one','two','thre fishx']},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":'12" moblacd"34',"email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","address":"hjl1234"},{"name":"joe","phone":"1234","email":"jklh@afdoh","other":"otherresult","address":"hjl1234"}];
-    var fields  = [];
-    var csv     = [];
-    var row     = false;
-    if( typeof(json) == "object" && !(json instanceof Array) ){
-      fields = this.parallelize( json ).keys;
-      csv    = this.parallelize( json ).values;
-    } else if (json instanceof Array){
-      for( row in json ){
-        fields = this.arrayUnique( fields, this.parallelize(json[row]).keys );
+    var escape = function(cell) {
+      cell = cell || '';
+      if(cell instanceof Array) {
+        cell = $.map(cell, escape);
       }
-      for( row in json ){ csv.push([]);
-        for( col in fields ){
-          if( fields[col] in json[row] ){
-            if( json[row][fields[col]] instanceof Array ){
-              json[row][fields[col]] = json[row][fields[col]].join(', ');
-            }
-            csv[csv.length-1].push(json[row][fields[col]].replace(/('|")/g, "'"));
-          } else {
-            csv[csv.length-1].push("");
-          }
-        }
+      cell = cell.toString();
+      if(cell.match(/[,"]/)) { cell = '"' + cell.replace(/"/g, '\\"') + '"'; }
+      return cell;
+    };
+    var row = function(obj) {
+      var result = [];
+      for(var i in columns) {
+        result.push(escape(obj[columns[i]]));
       }
-      fields = '"'+ fields.join('","') +'"';
+      return result.join(',');
+    };
 
-      for( i in csv ){
-        csv[i] = csv[i].join('","');
-      }
-      csv   = '"'+ csv.join('"\n"') +'"';
-      return fields + '\n' + csv;
+    var columns = Object.keys(
+      json instanceof Array ? $.extend.apply($, [{}].concat(json)) : json
+    );
+    var csv = [ $.map(columns, escape).join(',') ];
+    if(typeof(json) == "object" && !(json instanceof Array)) {
+      csv.push(row(json));
+    } else if(json instanceof Array) {
+      csv = csv.concat($.map(json, row));
     }
-
-  },
-
-  parallelize: function( obj ){
-    var keys   = [];
-    var values = [];
-    for( var k in obj ){
-      keys.push(k);
-      values.push(obj[k]);
-    }
-    return {'keys' : keys, 'values': values };
-  },
-
-  arrayUnique: function( arr , otherArray ){
-    var keyify = {};
-    for( var k in arr ){
-      keyify[ arr[k] ] = 1;
-    }
-    if( otherArray ){
-      for( var k in otherArray ){
-        keyify[ otherArray[k] ] = 1;
-      }
-    }
-    return this.parallelize( keyify ).keys;
+    return columns.length > 0 ? csv.join("\n") : ''
   },
 
   bind: function(scope, fn) {
