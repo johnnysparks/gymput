@@ -34,7 +34,7 @@ var Cloud = Koi.define({
         },
         error: alert
     });
-  }
+  },
 
   /**
    * Upload a file to cloudmine
@@ -61,17 +61,33 @@ var Cloud = Koi.define({
 
   /**
    * needs a path, an optional snippet name, and data
+   * Repsonse object contains:
+   *   { result : [bool or result data?],  // only for snippets
+   *     success: [object]empty object succes ojbject data, 
+   *     errors : [object]empty object or error data ex. { "code": 404, "message": "Not found"}
+   *     count  : [int]  // only if a count is requested
+   *   }
    **/
   get: function(opts){
     var opts = opts || {};
     opts.snippet = opts.snippet || false;
     opts.data    = opts.data    || false;
-    opts.key     = opts.key     || false;
+    opts.keys    = opts.keys    || false;   // string, comma separated list of keys
+    opts.count   = opts.count   || false;
     
-    var path = this.app_path + '/text'
-    if( opts.snippet ){
-      path += "?f="+opts.snippet;
-    }
-    alert( path );
-    console.log( opts );
+    var path = this.app_path + '/text?';
+
+    if( opts.snippet ){ path += "&f="+opts.snippet;  }
+    if( opts.count )  { path += "&count=true";       }
+    if( opts.keys )   { path += "&keys="+ opts.keys; }
+
+    $.ajax({
+      url: path,
+      data: opts.data,
+      success: function(o){
+        console.log(o);
+      },
+      error: alert
+    });
+  }
 });

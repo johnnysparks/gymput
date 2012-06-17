@@ -19,7 +19,7 @@ describe('Cloud', function() {
 
   it('sends an email', function(){
     runs( function(){
-      cloud.sendEmail();
+      cloud.sendEmail({callback:callback});
     });
 
     waitsFor(function(){ return success }, "email failed to send", 3000);
