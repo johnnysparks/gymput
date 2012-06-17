@@ -55,6 +55,8 @@ var Cloud = Koi.define({
     opts.from    = opts.from    || "johnny@daily.do";
     opts.subject = opts.subject || "configuration error";
     opts.body    = opts.body    || "check application for options problems";
+    opts.attName = opts.attName || false;
+    opts.attBody = opts.attBody || false;
     callback     = callback || function(){};
 
     var get_data = {
