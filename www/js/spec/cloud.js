@@ -1,14 +1,18 @@
 describe('Cloud', function() {
   var success   = false;
+  var emailFail = false;
   var cloud;
-  var callback  = function(e) { success = true; };
+  var callback  = function(e) { success = true; }
+  var badEmail  = function(e) { if(e === false) { emailFail = true;  }; callback(); }
+  var goodEmail = function(e) { if(e === true)  { emailFail = false; }; callback(); }
 
   beforeEach(function(){
     cloud = new Cloud();
   });
 
   afterEach(function(){
-    success = false;
+    success   = false;
+    emailFail = false;
   });
 
   it('loads cloudmine', function() {
@@ -17,17 +21,34 @@ describe('Cloud', function() {
     });
   });
 
+  it('rejects invalid emails', function(){
+    runs( function(){
+      cloud.sendEmail({
+        to :      "joedailydo",
+        from :    "johnnydailydo",
+        subject : "unit test subject",
+        body:     "unit test body, hey buttface"
+      }, badEmail );
+    });
+
+    waitsFor(function(){ return emailFail; }, "bad email didn't fail", 3000);
+
+    runs(function(){
+      expect( success );
+    });
+  });
+
   it('sends an email', function(){
     runs( function(){
       cloud.sendEmail({
-        to : "joe@daily.do",
-        from : "johnny@daily.do",
+        to :      "johnnyfuchs@gmail.com",
+        from :    "johnny@daily.do",
         subject : "unit test subject",
-        body: "unit test body",
-      }, callback);
+        body:     "unit test body, hey buttface"
+      }, goodEmail );
     });
 
-    waitsFor(function(){ return success }, "email failed to send", 3000);
+    waitsFor(function(){ return success; }, "email failed to send", 3000);
 
     runs(function(){
       expect( success );
@@ -47,19 +68,19 @@ describe('Cloud', function() {
       jfile.write( log_file, log_data, callback );
     });
 
-    waitsFor(function(){ return success }, "jfile.write failed", 500);
+    waitsFor(function(){ return success; }, "jfile.write failed", 500);
 
     runs(function(){
       jfile.read( log_file, callback );
     });
     
-    waitsFor(function(){ return success }, "jsfile.read failed", 500);
+    waitsFor(function(){ return success; }, "jsfile.read failed", 500);
 
     runs(function(){
       cloud.upload();
     });
 
-    waitsFor(function(){ return success }, "Cloud upload failed.", 500);
+    waitsFor(function(){ return success; }, "Cloud upload failed.", 500);
 
     runs(function(){
       expect( success );

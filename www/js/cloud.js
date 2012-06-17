@@ -21,6 +21,10 @@ var Cloud = Koi.define({
     });
   },
 
+  /**
+   * Untested "set" method
+   *  - used for data storage
+   **/
   set: function(key, value){
     var self = this;
     var send_data = {};
@@ -37,7 +41,7 @@ var Cloud = Koi.define({
   },
 
   /**
-   * Upload a file to cloudmine
+   * Send an email from Cloudmine
    * @param {object} options object:
    *  "to"      - recipeient email address
    *  "from"    - sender email address
@@ -46,16 +50,19 @@ var Cloud = Koi.define({
    *  "body"    - email body
    **/
   sendEmail: function(opts, callback){
-    var opts = opts || {};
+    var opts     = opts || {};
     opts.to      = opts.to      || "johnny@daily.do";
     opts.from    = opts.from    || "johnny@daily.do";
     opts.subject = opts.subject || "configuration error";
     opts.body    = opts.body    || "check application for options problems";
-    opts.snippet = "sendemail";
-    callback = callback || function(){};
+    callback     = callback || function(){};
 
-    this.get( opts, callback );
+    var get_data = {
+      snippet: "sendemail",
+      data: opts
+    };
 
+    this.get( get_data, callback );
   },
 
   /**
@@ -75,23 +82,22 @@ var Cloud = Koi.define({
     opts.count   = opts.count   || false;
     callback = callback || function(){};
 
-    var path = this.app_path + '/text?';
+    var path = this.app_path + '/text?result_only=true';
 
-    if( opts.snippet ){ path += "&f="+opts.snippet;  }
+    if( opts.snippet ){ path += "&f=" + opts.snippet;  }
     if( opts.count )  { path += "&count=true";       }
-    if( opts.keys )   { path += "&keys="+ opts.keys; }
-
+    if( opts.keys )   { path += "&keys=" + opts.keys; }
     $.ajax({
       url: path,
-      data: opts.data,
+      type: 'get',
+      data: '&params=' + JSON.stringify( opts.data ),
       success: function(o){
-        console.log(o);
+        if(o.result){ callback(true); }
+        else{         callback(false); }
       },
       error: function(o){
-        alert(path);
-      },
-      complete: function(o){
-        callback(o);
+        console.log("Email Failed");
+        callback(false);
       }
     });
   }
