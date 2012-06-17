@@ -10,7 +10,7 @@ var Cloud = Koi.define({
     this.base_path = "https://api.cloudmine.me/v1/app";
     this.app_id    = "3f9ee746eacf43498e7355a71f0e3360",
     this.auth_key  = "4ecbe42938d44afda746585b1aeb009d"
-    this.app_path  = this.base_path +'/'+ this.app_key,
+    this.app_path  = this.base_path +'/'+ this.app_id,
 
     $.ajaxSetup({
         dataType: "json",
@@ -45,17 +45,16 @@ var Cloud = Koi.define({
    *  "subject" - the subject text of the email
    *  "body"    - email body
    **/
-  sendEmail: function(opts){
+  sendEmail: function(opts, callback){
     var opts = opts || {};
     opts.to      = opts.to      || "johnny@daily.do";
     opts.from    = opts.from    || "johnny@daily.do";
     opts.subject = opts.subject || "configuration error";
     opts.body    = opts.body    || "check application for options problems";
-
     opts.snippet = "sendemail";
-    opts.callback = opts.callback || function(){};
+    callback = callback || function(){};
 
-    this.get( opts );
+    this.get( opts, callback );
 
   },
 
@@ -68,13 +67,14 @@ var Cloud = Koi.define({
    *     count  : [int]  // only if a count is requested
    *   }
    **/
-  get: function(opts){
+  get: function(opts, callback){
     var opts = opts || {};
     opts.snippet = opts.snippet || false;
     opts.data    = opts.data    || false;
     opts.keys    = opts.keys    || false;   // string, comma separated list of keys
     opts.count   = opts.count   || false;
-    
+    callback = callback || function(){};
+
     var path = this.app_path + '/text?';
 
     if( opts.snippet ){ path += "&f="+opts.snippet;  }
@@ -87,7 +87,12 @@ var Cloud = Koi.define({
       success: function(o){
         console.log(o);
       },
-      error: alert
+      error: function(o){
+        alert(path);
+      },
+      complete: function(o){
+        callback(o);
+      }
     });
   }
 });
