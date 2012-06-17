@@ -22,5 +22,15 @@ describe('Util', function() {
         group: ["a", "b", "c"], group2: ["a", "b"]
       });
     });
+    it('ignores unnamed inputs', function() {
+      loadFixtures('unnamed.html');
+      expect(util.form2json('form')).toEqual({});
+    });
+    it('handles fieldsets with mixed data', function() {
+      loadFixtures('fieldsets.html');
+      expect(util.form2json('form')).toEqual({
+        foo: 'a', bar: '123', baz: ['x','y','z']
+      });
+    });
   });
 });
