@@ -1,7 +1,7 @@
 var util = {
   form2json: function (formSelector) {
     var result = {};
-    $(formSelector).find('input[type="text"],input[type="hidden"],input[type="radio"]:checked').each(function() {
+    $(formSelector).find('input[type="text"],input[type="hidden"],input[type="radio"]:checked,select').each(function() {
       result[$(this).attr('name')] = $(this).val();
     });
     $(formSelector).find('input[type="checkbox"]:checked').each(function() {

@@ -4,6 +4,10 @@ describe('Util', function() {
       loadFixtures('empty_form.html');
       expect(util.form2json('form')).toEqual({});
     });
+    it('converts a form with a select box', function() {
+      loadFixtures('select_box.html');
+      expect(util.form2json('form')).toEqual({s:'a'});
+    });
     it('converts a form with text and hidden inputs', function() {
       loadFixtures('simple_text.html');
       expect(util.form2json('form')).toEqual({
