@@ -64,6 +64,8 @@ function init() {
       $('div.partner').hide();
     }
   });
+
+  $('#date').val( new Date() );
 }
 
 function clear_form_elements(ele) {
