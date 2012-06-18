@@ -36,6 +36,7 @@ var send_data = {
 if(params.attName && params.attBody ){
   send_data.files = [{
     filename : params.attName,
+    contentType: 'text/plain',
     content  : params.attBody
   }];
 }

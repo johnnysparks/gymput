@@ -89,6 +89,7 @@ var Cloud = Koi.define({
     if( opts.snippet ){ path += "&f=" + opts.snippet;  }
     if( opts.count )  { path += "&count=true";       }
     if( opts.keys )   { path += "&keys=" + opts.keys; }
+    util.print('&params=' + JSON.stringify( opts.data ));
     $.ajax({
       url: path,
       type: 'get',
