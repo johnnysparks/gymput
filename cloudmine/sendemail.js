@@ -1,3 +1,4 @@
+
 /**
  * Making changes to this script:
  *  This script is standalone on cloudmine's server
@@ -41,15 +42,12 @@ if(params.attName && params.attBody ){
   }];
 }
 
-exit(send_data);
-/*
 // Fire off the sendgrid email
 sendgrid.send( send_data ,
   function(err, result){
     if(err){ exit(false);    } 
     else   { exit(result); }
 });
-*/
 
 /**
  * The most basic of email validators,
@@ -60,3 +58,4 @@ function validishEmail(str) {
     var lastDotPos = str.lastIndexOf('.');
     return (lastAtPos < lastDotPos && lastAtPos > 0 && str.indexOf('@@') == -1 && lastDotPos > 2 && (str.length - lastDotPos) > 2);
 }
+
