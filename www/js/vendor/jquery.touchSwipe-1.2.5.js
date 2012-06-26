@@ -64,7 +64,7 @@
 		var defaults = {
 					
 			fingers 		: 1,								// int - The number of fingers to trigger the swipe, 1 or 2. Default is 1.
-			threshold 		: 75,								// int - The number of pixels that the user must move their finger by before it is considered a swipe. Default is 75.
+			threshold 		: 100,								// int - The number of pixels that the user must move their finger by before it is considered a swipe. Default is 75.
 			
 			swipe 			: null,		// Function - A catch all handler that is triggered for all swipe directions. Accepts 2 arguments, the original event object and the direction of the swipe : "left", "right", "up", "down".
 			swipeLeft		: null,		// Function - A handler that is triggered for "left" swipes. Accepts 3 arguments, the original event object, the direction of the swipe : "left", "right", "up", "down" and the distance of the swipe.

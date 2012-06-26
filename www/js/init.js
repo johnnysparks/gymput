@@ -1,34 +1,37 @@
+/**
+ * This script kicks off the rest of the application
+ * Some globals will be defined here, as well as the global application binds
+ **/
+
 var jfile, mongo, cloud;
+var isMobile = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/gi)?true:false;
 
-function nextPage() {
-  curr_page = $('fieldset:visible');
-  next_page = curr_page.next('fieldset');
-  if(next_page.length) {
-    curr_page.hide();
-    next_page.show();
-    updateProgress();
-  }
-}
-function prevPage() {
-  curr_page = $('fieldset:visible');
-  prev_page = curr_page.prev('fieldset');
-  if(prev_page.length) {
-    curr_page.hide();
-    prev_page.show();
-    updateProgress();
-  }
-}
-function updateProgress() {
-  var progress = 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1);
-  $('#progress').progressbar({value: 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1)});
-  if( progress > 90 ){
-    new_user_form = util.form2json('form');
-    mongo.insert( new_user_form, function(o){ console.log(o); } );        
-    clear_form_elements('form');
-  }
+if(isMobile){
+  $(document).bind('deviceready', init );
+} else {
+  $(document).bind('ready', init );
 }
 
-function init() {
+
+
+
+function init(){
+
+  // setup touch/click binds "gtouch" for "gymput touch event"
+  // maps 
+  if(isMobile){
+    $("label, a, img.nav, select, input[type='text']").bind('touchstart',function(e){
+      e.stopPropagation();
+      $(this).trigger('touchend');
+      $(this).trigger('gtouch');
+    });
+    $(document).bind('touchmove', function(e){ e.preventDefault(); });             // prevents the page from sliding when the user drags the background
+  } else {
+    $("label, a, img.nav, select, input[type='text']").bind('click',function(e){
+      e.stopPropagation();
+      $(this).trigger('gtouch');
+    });
+  }
 
 //  jfile = new JsonFile();
   mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
@@ -37,17 +40,22 @@ function init() {
 
   $("body").swipe({swipe: function(event, direction) {
     if(direction === 'left') {
-      nextPage();
+      nav.nextPage();
     } else if(direction === 'right') {
-      prevPage();
+      nav.prevPage();
     }
   }});
+  
+  // initialize progress bar
   $("#progress").progressbar({ value: 0 });
-  $('label').bind('touchstart', function(e) {
-    $('#' + $(this).attr('for')).trigger('click');
+
+  // initialize progress bar
+  $('label').bind('gtouch', function(e) {
+    $('#' + $(this).attr('for')).trigger('gtouch');
   });
-  $('.nav.prev').bind('touchstart', function(e) { prevPage(); });
-  $('.nav.next').bind('touchstart', function(e) { nextPage(); });
+
+  $('.nav.prev').bind('gtouch', function(e) { nav.prevPage(); });
+  $('.nav.next').bind('gtouch', function(e) { nav.nextPage(); });
 
   $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
   $("#personal-age").scroller("show");
@@ -68,21 +76,3 @@ function init() {
   $('#date').val( new Date() );
 }
 
-function clear_form_elements(ele) {
-
-    $(ele).find(':input').each(function() {
-        switch(this.type) {
-            case 'password':
-            case 'select-multiple':
-            case 'select-one':
-            case 'text':
-            case 'textarea':
-                $(this).val('');
-                break;
-            case 'checkbox':
-            case 'radio':
-                this.checked = false;
-        }
-    });
-
-}
