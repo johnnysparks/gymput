@@ -84,7 +84,7 @@ var Cloud = Koi.define({
     opts.count   = opts.count   || false;
     callback = callback || function(){};
 
-    var path = this.app_path + '/text?result_only=true';
+    var path = this.app_path + '/text?';
 
     if( opts.snippet ){ path += "&f=" + opts.snippet;  }
     if( opts.count )  { path += "&count=true";       }

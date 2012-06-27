@@ -3,9 +3,9 @@ describe('Cloud', function() {
   var emailFail = false;
   var cloud;
   var jfile;
-  var callback  = function(e) { success = true; }
-  var badEmail  = function(e) { if(e === false) { emailFail = true;  }; callback(); }
-  var goodEmail = function(e) { if(e === true)  { emailFail = false; }; callback(); }
+  var callback  = function(e) { success = true; console.log(e); }
+  var badEmail  = function(e) { if(e === false) { emailFail = true;  }; callback(e); }
+  var goodEmail = function(e) { if(e === true)  { emailFail = false; }; callback(e); }
 
   beforeEach(function(){
     cloud = new Cloud();
@@ -63,12 +63,12 @@ describe('Cloud', function() {
         from :    "johnny@daily.do",
         subject : "unit test subject",
         body:     "unit test body, hey buttface",
-        attName:  "test.txt",
-        attBody:  "mochachino latte\notherdata,\"csv?\", maybe"
+        attName:  "test.csv",
+        attBody:  "mochachino latte,otherdata,maybe,mochachino latte,otherdata,maybe2"
       }, goodEmail );
     });
 
-    waitsFor(function(){ return success; }, "email failed to send", 3000);
+    waitsFor(function(){ return success; }, "email failed to send", 5000);
 
     runs(function(){
       expect( success );
