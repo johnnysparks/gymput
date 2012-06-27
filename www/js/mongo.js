@@ -69,6 +69,21 @@ var Mongo = Koi.define({
   },
 
 /**
+* get - retrieves one document from the collection based on an id
+*  @param {function}  callback: success handler function
+*/
+  getAll: function(callback) {
+    var get_opts = {
+      type: "get",
+      data: {"_apikey": this.api_key, "limit":100}, //, "sort": {"created": -1}},
+      url: this.doc_url,
+      success: callback
+    };
+    console.log(get_opts);
+    $.ajax( get_opts );
+  },
+
+/**
 * deleteAll - deletes collection
 *  @param {function}  callback: success handler function
 */

@@ -59,5 +59,34 @@ var util = {
 
   bind: function(scope, fn) {
     return function () { fn.apply(scope, arguments); }
+  },
+
+  prettyUser: function( new_pros ){
+    var output = "";
+    for(var key in new_pros ){
+      if( new_pros[key] instanceof Array ){
+        output += key +":\n" +new_pros[key].join(',')+"\n\n";
+      } else {
+        output += key +":\n" +new_pros[key]+"\n\n";
+      }
+    }
+    return output;
+  },
+    
+  emailUpdates: function( most_recent, attachment ){
+    $.ajax({
+      url: 'http://gymput.com/sendemail',
+      type: 'post',
+      data:{
+        to:      'johnnyfuchs@gmail.com',
+        from:    'johnny@daily.do',
+        subject: 'Updated Prospect List',
+        body:    most_recent,
+        attName: 'prospects.csv',
+        attBody: attachment
+      },
+      success: console.log,
+      error: console.log
+    });
   }
 };

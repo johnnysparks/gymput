@@ -73,6 +73,6 @@ function init(){
     }
   });
 
-  $('#date').val( new Date() );
+  $('#date').val( parseInt( new Date().getTime() / 1000 ) );
 }
 

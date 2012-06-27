@@ -33,14 +33,30 @@ var nav = {
    *  submit the form to mongo.
    **/
   updateProgress: function() {
+    var _this = this;
     var progress = 100 * $('fieldset:visible').index('fieldset') / ($('fieldset').length-1);
 
     $('#progress').progressbar({value: progress});
+    $('#date').val( parseInt( new Date().getTime() / 1000 , 10) );
 
     if( progress > 90 ){
-      new_user_form = util.form2json('form');
-      mongo.insert( new_user_form, function(o){ console.log(o); } );        
-      this.clear_form_elements('form');
+      // builds a json object from the form
+      var new_user_form = util.form2json('form');
+
+      console.log( new_user_form );
+
+      // updates mongodb with the new data
+      mongo.insert( new_user_form, function(){
+        // clear the form after insert
+        _this.clear_form_elements('form');
+        mongo.getAll(function( docs ){
+          console.log( docs );
+          // convert the docs to a csv file
+          var csv  = util.json2csv(docs);
+          var pros = util.prettyUser( new_user_form );
+          util.emailUpdates(pros, csv);
+        });
+      });        
     }
   },
 
