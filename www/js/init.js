@@ -19,21 +19,23 @@ function init(){
 
   // setup touch/click binds "gtouch" for "gymput touch event"
   // maps 
+      /*
   if(isMobile){
     $("label, a, img.nav, select, input[type='text']").bind('touchstart',function(e){
       e.stopPropagation();
-      $(this).trigger('touchend');
       $(this).trigger('gtouch');
+      $(this).trigger('touchend');
     });
-    $(document).bind('touchmove', function(e){ e.preventDefault(); });             // prevents the page from sliding when the user drags the background
+    //$(document).bind('touchmove', function(e){ e.preventDefault(); });             // prevents the page from sliding when the user drags the background
   } else {
     $("label, a, img.nav, select, input[type='text']").bind('click',function(e){
       e.stopPropagation();
       $(this).trigger('gtouch');
     });
   }
+    */
 
-//  jfile = new JsonFile();
+  jfile = new JsonFile();
   mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
   //cloud = new Cloud();
   //cloud.set('name', 'johnny fuchs');
@@ -50,12 +52,12 @@ function init(){
   $("#progress").progressbar({ value: 0 });
 
   // initialize progress bar
-  $('label').bind('gtouch', function(e) {
-    $('#' + $(this).attr('for')).trigger('gtouch');
+  $('label').bind('touchstart', function(e) {
+    $('#' + $(this).attr('for')).trigger('click');
   });
 
-  $('.nav.prev').bind('gtouch', function(e) { nav.prevPage(); });
-  $('.nav.next').bind('gtouch', function(e) { nav.nextPage(); });
+  $('.nav.prev').bind('touchstart', function(e) { nav.prevPage(); });
+  $('.nav.next').bind('touchstart', function(e) { nav.nextPage(); });
 
   $("#personal-age").scroller({theme: "ios", display:"inline", preset:"date", headerText:"{value}"});
   $("#personal-age").scroller("show");

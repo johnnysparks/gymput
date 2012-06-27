@@ -43,14 +43,16 @@ var nav = {
       // builds a json object from the form
       var new_user_form = util.form2json('form');
 
-      console.log( new_user_form );
+      // local backup
+      var filename = new_user_form.created + '.json';
+
+      jfile.write( filename, new_user_form, function(o){ });
 
       // updates mongodb with the new data
-      mongo.insert( new_user_form, function(){
+      mongo.insert( new_user_form, function(o){
         // clear the form after insert
         _this.clear_form_elements('form');
         mongo.getAll(function( docs ){
-          console.log( docs );
           // convert the docs to a csv file
           var csv  = util.json2csv(docs);
           var pros = util.prettyUser( new_user_form );
