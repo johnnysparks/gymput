@@ -18,13 +18,13 @@ var util = {
   },
 
   print: function( string ){
-    var i, message = '<p style="font-family: Monaco; color: #5e7d00; padding: 10px 0 0 20px; margin: 0px;">';
+    var i, message = '<p class="notify" style="font-size:12px; color: #5e7d00; padding: 10px 0 0 20px; margin: 0px;">';
     if( typeof string == "string") message += string;
     else {
       for( i in string ) message += String(string[i]);
     }
     message += '</p>';
-    $('body').append( message ) ;
+    $('fieldset.complete').append( message ) ;
   },
   
   json2csv: function( json ){
@@ -61,21 +61,23 @@ var util = {
     return function () { fn.apply(scope, arguments); }
   },
 
-  prettyUser: function( new_pros ){
+  prettyUser: function( new_pros, delim){
+    var delim = delim || "\n\n";
     var output = "";
     for(var key in new_pros ){
       if( new_pros[key] instanceof Array ){
-        output += key +":\n" +new_pros[key].join(',')+"\n\n";
+        output += key +":\n" +new_pros[key].join(',')+delim;
       } else {
-        output += key +":\n" +new_pros[key]+"\n\n";
+        output += key +":\n" +new_pros[key]+delim;
       }
     }
     return output;
   },
     
-  emailUpdates: function( most_recent, attachment ){
+  emailUpdates: function( most_recent, attachment, callback){
+    var callback = (typeof callback == "function") ? callback : console.log;
     $.ajax({
-      url: 'http://gymput.com/sendemail',
+      url: 'http://gymput.com/sendemail', //'http://localhost:5000/sendemail', //
       type: 'post',
       data:{
         to:      'johnnyfuchs@gmail.com',
@@ -85,8 +87,62 @@ var util = {
         attName: 'prospects.csv',
         attBody: attachment
       },
-      success: console.log,
+      success: callback,
       error: console.log
     });
+  },
+
+  /**
+   * Clears the form
+   *  Allows the form to start again.
+   **/
+  resetForm: function(){
+    $('p.notify').remove();
+    $('form').find(':input').each(function() {
+        switch(this.type) {
+            case 'password':
+            case 'select-multiple':
+            case 'select-one':
+            case 'select':
+            case 'text':
+            case 'email':
+            case 'textarea':
+                $(this).val('');
+                break;
+            case 'checkbox':
+            case 'radio':
+                this.checked = false;
+        }
+    });
+  },
+  notify: function(message){
+    this.print(message);
+  },
+  submitProspect: function(){
+    var _this = this;
+    // builds a json object from the form
+    var new_user_form = util.form2json('form');
+    this.notify("Saving prospect: " + util.prettyUser( new_user_form, '<br />'));
+
+    // local backup
+    var filename = new_user_form.created + '.json';
+
+    jfile.write( filename, new_user_form, function(o){
+      _this.notify("Saved to iPad.");
+    });
+
+    // updates mongodb with the new data
+    mongo.insert( new_user_form, function(o){
+      _this.notify("Saved to remote database.");
+      // clear the form after insert
+      mongo.getAll(function( docs ){
+        // convert the docs to a csv file
+        var csv  = util.json2csv(docs);
+        var pros = util.prettyUser( new_user_form );
+        util.emailUpdates(pros, csv, function(){
+          _this.notify("Notification sent.");
+        });
+      });
+    });        
   }
 };

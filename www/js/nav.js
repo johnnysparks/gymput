@@ -13,7 +13,9 @@ var nav = {
       curr_page.hide();
       next_page.show();
       this.updateProgress();
+      return true;
     }
+    return false;
   },
   prevPage: function() {
     $('input').blur();
@@ -23,9 +25,17 @@ var nav = {
       curr_page.hide();
       prev_page.show();
       this.updateProgress();
+      return true;
     }
+    return false;
   },
-
+  /**
+   * Go directly to the homepage
+   **/
+  goHome: function(){
+    $('fieldset').hide();
+    $('fieldset:first').show();
+  },
   /**
    * Update Progress
    *  Calculate the fraction of pages complete
@@ -40,46 +50,7 @@ var nav = {
     $('#date').val( parseInt( new Date().getTime() / 1000 , 10) );
 
     if( progress > 90 ){
-      // builds a json object from the form
-      var new_user_form = util.form2json('form');
-
-      // local backup
-      var filename = new_user_form.created + '.json';
-
-      jfile.write( filename, new_user_form, function(o){ });
-
-      // updates mongodb with the new data
-      mongo.insert( new_user_form, function(o){
-        // clear the form after insert
-        _this.clear_form_elements('form');
-        mongo.getAll(function( docs ){
-          // convert the docs to a csv file
-          var csv  = util.json2csv(docs);
-          var pros = util.prettyUser( new_user_form );
-          util.emailUpdates(pros, csv);
-        });
-      });        
+      util.submitProspect();
     }
-  },
-
-  /**
-   * Empty the form
-   *  Clears out all form elements
-   **/
-  clear_form_elements: function(ele) {
-    $(ele).find(':input').each(function() {
-        switch(this.type) {
-            case 'password':
-            case 'select-multiple':
-            case 'select-one':
-            case 'text':
-            case 'textarea':
-                $(this).val('');
-                break;
-            case 'checkbox':
-            case 'radio':
-                this.checked = false;
-        }
-    });
   }
 };

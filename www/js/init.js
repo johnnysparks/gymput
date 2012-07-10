@@ -36,6 +36,7 @@ function init(){
     */
 
   jfile = new JsonFile();
+  //mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "test-prospects" });
   mongo = new Mongo({ api_key: "dmfbybnos7h10x2rrrrx", db: "gymput", collection: "prospects" });
   //cloud = new Cloud();
   //cloud.set('name', 'johnny fuchs');
@@ -50,6 +51,8 @@ function init(){
   
   // initialize progress bar
   $("#progress").progressbar({ value: 0 });
+  $("#clear_form").bind('touchstart', function(e){ util.resetForm(); });
+  $("#go_home").bind('touchstart', function(e){ nav.goHome(); });
 
   // initialize progress bar
   $('label').bind('touchstart', function(e) {
