@@ -143,6 +143,6 @@ var util = {
           _this.notify("Notification sent.");
         });
       });
-    });        
+    });
   }
 };

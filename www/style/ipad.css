@@ -35,6 +35,8 @@ body {
   background-color: #E4E4E4;
 }
 
+#clear_form { margin-left: 10px; }
+
 #employee {
   position: fixed;
   top: 10px;
