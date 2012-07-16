@@ -35,6 +35,7 @@ var nav = {
   goHome: function(){
     $('fieldset').hide();
     $('fieldset:first').show();
+    this.updateProgress();
   },
   /**
    * Update Progress
